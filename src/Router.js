@@ -8,6 +8,8 @@ import BasicTables from "./components/tables/BasicTables";
 import AdvancedTables from "./components/tables/AdvancedTables";
 import AsynchronousTable from "./components/tables/AsynchronousTable";
 import BasicForm from "./components/forms/BasicForm";
+import Echarts from "./components/charts/Echarts";
+import Recharts from "./components/charts/Recharts";
 
 class Router extends Component {
   render() {
@@ -31,6 +33,12 @@ class Router extends Component {
           <Route path='/app/form' render={() =>
             <Switch>
               <Route path='/app/form/basicForm' component={BasicForm} />
+            </Switch>
+          }/>
+          <Route path='/app/chart' render={() =>
+            <Switch>
+              <Route path='/app/chart/echarts' component={Echarts}/>
+              <Route path='/app/chart/recharts' component={Recharts}/>
             </Switch>
           }/>
         </App>
