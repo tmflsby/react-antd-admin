@@ -7,18 +7,29 @@ class SiderCustom extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      collapsed: false,
       mode: 'inline',
       openKey: '',
       selectedKey: ''
     };
   }
 
+  static getDerivedStateFromProps(nextProps, preState) {
+    if (nextProps.collapsed !== preState.collapsed) {
+      const state2 = SiderCustom.onCollapse(nextProps.collapsed);
+      return {
+        ...state2
+      };
+    }
+    return null;
+  }
+
   render() {
     return (
       <Sider breakpoint='lg' collapsible={true}
-             collapsed={this.state.collapsed}
+             collapsed={this.props.collapsed}
              onCollapse={this.onCollapse}
+             style={{ overflowY: 'auto' }}
+             trigger={null}
       >
         <div className="logo"/>
         <Menu theme='dark' onClick={this.menuClick}
@@ -27,6 +38,12 @@ class SiderCustom extends Component {
               onOpenChange={this.openMenu}
               mode={this.state.mode}
         >
+          <Menu.Item key="/app/dashboard/index">
+            <NavLink to={'/app/dashboard/index'}>
+              <Icon type="mobile" />
+              <span className="nav-text">首页</span>
+            </NavLink>
+          </Menu.Item>
           <Menu.SubMenu key='/app/ui'
                         title={
                           <span>
@@ -117,13 +134,11 @@ class SiderCustom extends Component {
     );
   }
 
-  onCollapse = collapsed => {
-    console.log('collapsed', collapsed);
-    this.setState({
+  static onCollapse = collapsed => {
+    return {
       collapsed,
       mode: collapsed ? 'vertical' : 'inline'
-    });
-    console.log('onCollapse', this.state);
+    };
   };
 
   menuClick = e => {
@@ -134,7 +149,7 @@ class SiderCustom extends Component {
   };
 
   openMenu = v => {
-    console.log(v)
+    console.log(v);
     this.setState({
       openKey: v[v.length - 1]
     });

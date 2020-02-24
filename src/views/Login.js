@@ -31,7 +31,9 @@ class Login extends Component {
                     }
                   ]
                 })(
-                  <Input prefix={<Icon type='user' style={{ fontSize: 13 }}/>} placeholder="用户名"/>
+                  <Input prefix={<Icon type='user' style={{ fontSize: 13 }}/>}
+                         placeholder="用户名" autoComplete='username'
+                  />
                 )
               }
             </Form.Item>
@@ -45,7 +47,9 @@ class Login extends Component {
                     }
                   ]
                 })(
-                  <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="密码"/>
+                  <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />}
+                         type="password" placeholder="密码" autoComplete='current-password'
+                  />
                 )
               }
             </Form.Item>

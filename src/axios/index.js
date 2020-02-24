@@ -1,5 +1,5 @@
 import axios from "axios";
-import { get } from "./tools";
+import { get, post } from "./tools";
 import * as config from "./config";
 
 export const getBBCNews = () => get({url: config.NEWS_BBC});
@@ -16,4 +16,29 @@ export const weibo = () =>
     .then(res => res.data)
     .catch(err => {
     console.log(err);
+  });
+
+export const gitOauthLogin = () =>
+  get({
+    url: `${
+      config.GIT_OAUTH
+    }/authorize?client_id=792cdcd244e98dcd2dee&redirect_uri=http://localhost:3000/&scope=user&state=reactAdmin`
+  });
+
+export const gitOauthToken = code =>
+  post({
+    url: `https://cors-anywhere.herokuapp.com/${config.GIT_OAUTH}/access_token`,
+    data: {
+      client_id: '792cdcd244e98dcd2dee',
+      client_secret: '81c4ff9df390d482b7c8b214a55cf24bf1f53059',
+      redirect_uri: 'http://localhost:3000/',
+      state: 'reactAdmin',
+      code
+    }
+  });
+
+// {headers: {Accept: 'application/json'}}
+export const gitOauthInfo = access_token =>
+  get({
+    url: `${config.GIT_USER}access_token=${access_token}`
   });

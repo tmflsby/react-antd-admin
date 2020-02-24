@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { HashRouter, Route, Switch } from "react-router-dom";
+import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
 import App from "./App";
 import Buttons from "./components/ui/Buttons";
 import Icons from "./components/ui/Icons";
@@ -13,13 +13,16 @@ import Recharts from "./components/charts/Recharts";
 import Login from "./views/Login";
 import NotFound from "./views/NotFound";
 import Views from "./views/Views";
+import Dashboard from "./components/dashboard/Dashboard";
 
 class Router extends Component {
   render() {
     return (
       <HashRouter>
-        <Route path='/' component={Views}>
+        <Views>
           <App>
+            <Redirect to='/app/dashboard/index'/>
+            <Route path='/app/dashboard/index' component={Dashboard}/>
             <Route path='/app/ui' render={() =>
               <Switch>
                 <Route path='/app/ui/buttons' component={Buttons} />
@@ -52,7 +55,7 @@ class Router extends Component {
               </Switch>
             }/>
           </App>
-        </Route>
+        </Views>
       </HashRouter>
     );
   }
