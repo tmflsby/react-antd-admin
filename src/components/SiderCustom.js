@@ -90,8 +90,7 @@ class SiderCustom extends Component {
               <NavLink to='/app/chart/recharts'>recharts</NavLink>
             </Menu.Item>
           </Menu.SubMenu>
-          <Menu.SubMenu key='pages'
-                        title={
+          <Menu.SubMenu title={
                           <span>
                             <Icon type='switcher'/>
                             <span className="nav-text">页面</span>
