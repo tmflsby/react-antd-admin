@@ -14,6 +14,10 @@ import Login from "./views/Login";
 import NotFound from "./views/NotFound";
 import Views from "./views/Views";
 import Dashboard from "./components/dashboard/Dashboard";
+import Modals from "./components/ui/Modals";
+import Notifications from "./components/ui/Notifications";
+import TabsCustom from "./components/ui/Tabs";
+import Banners from "./components/ui/banners";
 
 class Router extends Component {
   render() {
@@ -28,6 +32,10 @@ class Router extends Component {
                 <Route path='/app/ui/buttons' component={Buttons} />
                 <Route path='/app/ui/icons' component={Icons} />
                 <Route path='/app/ui/spins' component={Spins} />
+                <Route path='/app/ui/modals' component={Modals} />
+                <Route path='/app/ui/notifications' component={Notifications} />
+                <Route path='/app/ui/tabs' component={TabsCustom} />
+                <Route path='/app/ui/banners' component={Banners} />
               </Switch>
             }/>
             <Route path='/app/table' render={() =>

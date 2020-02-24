@@ -61,6 +61,18 @@ class SiderCustom extends Component {
             <Menu.Item key='/app/ui/spins'>
               <NavLink to='/app/ui/spins'>加载中</NavLink>
             </Menu.Item>
+            <Menu.Item key='/app/ui/modals'>
+              <NavLink to='/app/ui/modals'>对话框</NavLink>
+            </Menu.Item>
+            <Menu.Item key='/app/ui/notifications'>
+              <NavLink to='/app/ui/notifications'>通知提醒框</NavLink>
+            </Menu.Item>
+            <Menu.Item key='/app/ui/tabs'>
+              <NavLink to='/app/ui/tabs'>标签页</NavLink>
+            </Menu.Item>
+            <Menu.Item key='/app/ui/banners'>
+              <NavLink to='/app/ui/banners'>轮播图</NavLink>
+            </Menu.Item>
           </Menu.SubMenu>
           <Menu.SubMenu key='/app/table'
                         title={
