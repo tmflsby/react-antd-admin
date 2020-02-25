@@ -21,6 +21,8 @@ import Banners from "./components/ui/banners";
 import Wysiwyg from "./components/ui/Wysiwyg";
 import Drags from "./components/ui/Draggable";
 import Gallery from "./components/ui/Gallery";
+import BasicAnimations from "./components/animation/BasicAnimations";
+import ExampleAnimations from "./components/animation/ExampleAnimations";
 
 class Router extends Component {
   render() {
@@ -42,6 +44,12 @@ class Router extends Component {
                 <Route path='/app/ui/wysiwyg' component={Wysiwyg} />
                 <Route path='/app/ui/draggable' component={Drags} />
                 <Route path='/app/ui/gallery' component={Gallery} />
+              </Switch>
+            }/>
+            <Route path='/app/animation' render={() =>
+              <Switch>
+                <Route path='/app/animation/basicAnimations' component={BasicAnimations} />
+                <Route path='/app/animation/exampleAnimations' component={ExampleAnimations} />
               </Switch>
             }/>
             <Route path='/app/table' render={() =>

@@ -83,6 +83,21 @@ class SiderCustom extends Component {
               <NavLink to='/app/ui/gallery'>画廊</NavLink>
             </Menu.Item>
           </Menu.SubMenu>
+          <Menu.SubMenu key='/app/animation'
+                        title={
+                          <span>
+                            <Icon type='rocket'/>
+                            <span className="nav-text">动画</span>
+                          </span>
+                        }
+          >
+            <Menu.Item key='/app/animation/basicAnimations'>
+              <NavLink to='/app/animation/basicAnimations'>基础动画</NavLink>
+            </Menu.Item>
+            <Menu.Item key='/app/animation/exampleAnimations'>
+              <NavLink to='/app/animation/exampleAnimations'>动画案例</NavLink>
+            </Menu.Item>
+          </Menu.SubMenu>
           <Menu.SubMenu key='/app/table'
                         title={
                           <span>
