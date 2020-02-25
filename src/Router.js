@@ -18,6 +18,9 @@ import Modals from "./components/ui/Modals";
 import Notifications from "./components/ui/Notifications";
 import TabsCustom from "./components/ui/Tabs";
 import Banners from "./components/ui/banners";
+import Wysiwyg from "./components/ui/Wysiwyg";
+import Drags from "./components/ui/Draggable";
+import Gallery from "./components/ui/Gallery";
 
 class Router extends Component {
   render() {
@@ -36,6 +39,9 @@ class Router extends Component {
                 <Route path='/app/ui/notifications' component={Notifications} />
                 <Route path='/app/ui/tabs' component={TabsCustom} />
                 <Route path='/app/ui/banners' component={Banners} />
+                <Route path='/app/ui/wysiwyg' component={Wysiwyg} />
+                <Route path='/app/ui/draggable' component={Drags} />
+                <Route path='/app/ui/gallery' component={Gallery} />
               </Switch>
             }/>
             <Route path='/app/table' render={() =>

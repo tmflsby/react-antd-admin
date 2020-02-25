@@ -73,6 +73,15 @@ class SiderCustom extends Component {
             <Menu.Item key='/app/ui/banners'>
               <NavLink to='/app/ui/banners'>轮播图</NavLink>
             </Menu.Item>
+            <Menu.Item key='/app/ui/wysiwyg'>
+              <NavLink to='/app/ui/wysiwyg'>富文本</NavLink>
+            </Menu.Item>
+            <Menu.Item key='/app/ui/draggable'>
+              <NavLink to='/app/ui/draggable'>拖拽</NavLink>
+            </Menu.Item>
+            <Menu.Item key='/app/ui/gallery'>
+              <NavLink to='/app/ui/gallery'>画廊</NavLink>
+            </Menu.Item>
           </Menu.SubMenu>
           <Menu.SubMenu key='/app/table'
                         title={
