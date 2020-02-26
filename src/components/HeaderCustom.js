@@ -4,7 +4,6 @@ import screenfull from "screenfull";
 import { gitOauthInfo, gitOauthToken } from "../axios";
 import { queryString } from "../utils";
 import avater from "../style/imgs/b1.jpg";
-const { Header } = Layout;
 
 class HeaderCustom extends Component {
   constructor(props) {
@@ -43,11 +42,10 @@ class HeaderCustom extends Component {
 
   render() {
     return (
-      <Header className="custom-theme" style={{ background: '#fff', padding: 0, height: 65 }}>
-        <Icon
-          className="trigger custom-trigger"
-          type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-          onClick={this.props.toggle}
+      <Layout.Header className="custom-theme" style={{ background: '#fff', padding: 0, height: 65 }}>
+        <Icon className="trigger custom-trigger"
+              type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
+              onClick={this.props.toggle}
         />
         <Menu mode='horizontal' style={{ lineHeight: '64px', float: 'right' }}>
           <Menu.Item key="full" onClick={this.screenFull} >
@@ -83,7 +81,7 @@ class HeaderCustom extends Component {
             }
           `}
         </style>
-      </Header>
+      </Layout.Header>
     );
   }
 }

@@ -3,7 +3,6 @@ import { Layout } from 'antd';
 import "./style/index.less";
 import SiderCustom from './components/SiderCustom';
 import HeaderCustom from './components/HeaderCustom';
-const { Content, Footer } = Layout;
 
 class App extends Component {
   constructor(props) {
@@ -25,10 +24,10 @@ class App extends Component {
         <SiderCustom collapsed={this.state.collapsed}/>
         <Layout>
           <HeaderCustom toggle={this.toggle}/>
-          <Content style={{ margin: '0 16px', overflow: 'initial', flex: '1 1 0' }}>
+          <Layout.Content style={{ margin: '0 16px', overflow: 'initial', flex: '1 1 0' }}>
             {this.props.children}
-          </Content>
-          <Footer style={{ textAlign: 'center' }}>React-Admin ©2020 Created by 帅洋</Footer>
+          </Layout.Content>
+          <Layout.Footer style={{ textAlign: 'center' }}>React-Admin ©2020 Created by 帅洋</Layout.Footer>
         </Layout>
       </Layout>
     );

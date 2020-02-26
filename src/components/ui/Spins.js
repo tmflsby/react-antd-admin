@@ -62,7 +62,7 @@ class Spins extends Component {
           </Col>
           <Col className="gutter-row" span={12}>
             <div className="gutter-box">
-              <Card bordered={false}>
+              <Card bordered={false} title='顶部进度条'>
                 <p>
                   <Button icon="caret-right" onClick={this.nProgressStart} />
                   <span> NProgress.start() — 显示进度条</span>

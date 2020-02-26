@@ -24,11 +24,10 @@ class SiderCustom extends Component {
 
   render() {
     return (
-      <Layout.Sider breakpoint='lg' collapsible={true}
-             collapsed={this.props.collapsed}
-             onCollapse={this.onCollapse}
-             style={{ overflowY: 'auto' }}
-             trigger={null}
+      <Layout.Sider breakpoint='lg'
+                    collapsed={this.props.collapsed}
+                    style={{ overflowY: 'auto' }}
+                    trigger={null}
       >
         <div className="logo"/>
         <Menu theme='dark' onClick={this.menuClick}

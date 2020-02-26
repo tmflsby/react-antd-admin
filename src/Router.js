@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
+import Loadable from "react-loadable";
 import App from "./App";
 import Buttons from "./components/ui/Buttons";
 import Icons from "./components/ui/Icons";
@@ -18,11 +19,28 @@ import Modals from "./components/ui/Modals";
 import Notifications from "./components/ui/Notifications";
 import TabsCustom from "./components/ui/Tabs";
 import Banners from "./components/ui/banners";
-import Wysiwyg from "./components/ui/Wysiwyg";
 import Drags from "./components/ui/Draggable";
 import Gallery from "./components/ui/Gallery";
 import BasicAnimations from "./components/animation/BasicAnimations";
 import ExampleAnimations from "./components/animation/ExampleAnimations";
+
+const MyLoadingComponent = ({ isLoading, error }) => {
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
+  else if (error) {
+    return <div>Sorry, there was a problem loading the page.</div>
+  }
+  else {
+    return null;
+  }
+};
+
+// 按需加载富文本配置
+const Wysiwyg = Loadable({
+  loader: () => import('./components/ui/Wysiwyg'),
+  loading: MyLoadingComponent
+});
 
 class Router extends Component {
   render() {

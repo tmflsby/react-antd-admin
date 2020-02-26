@@ -48,7 +48,7 @@ class BreadcrumbCustom extends Component {
   render() {
     const themesTag = this.state.themes.map((v, i) => (
       <div className="pull-left y-center mr-m mb-s" key={i}>
-        <a href='#/' className={`w-24 mr-s b-a ${v.type}`}> </a>
+        <i className={`w-24 mr-s b-a ${v.type}`}/>
         <Switch checked={v.checked} onChange={() => this.themeChange(v)} />
       </div>
     ));
@@ -63,9 +63,9 @@ class BreadcrumbCustom extends Component {
           {second}
         </Breadcrumb>
         <div className={`switcher dark-white ${this.state.switcherOn ? 'active' : ''}`}>
-          <a href='#/' className="sw-btn dark-white" onClick={this.switcherOn}>
+          <p className="sw-btn dark-white" onClick={this.switcherOn}>
             <Icon type="setting" className="text-dark" />
-          </a>
+          </p>
           <div style={{padding: '1rem'}} className="clear">
             { themesTag }
           </div>
