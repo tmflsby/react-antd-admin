@@ -11,9 +11,12 @@ class Login extends Component {
     });
   };
 
+  gitHub = () => {
+    window.location.href = 'https://github.com/login/oauth/authorize?client_id=792cdcd244e98dcd2dee&redirect_uri=http://localhost:3000/&scope=user&state=reactAdmin';
+  };
+
   render() {
     const { getFieldDecorator } = this.props.form;
-
     return (
       <div className='login'>
         <div className="login-form">
@@ -67,6 +70,9 @@ class Login extends Component {
                 登录
               </Button>
               或<a href="#/login">现在就去注册！</a>
+              <p>
+                <Icon type="github" onClick={this.gitHub} />(第三方登录)
+              </p>
             </Form.Item>
           </Form>
         </div>

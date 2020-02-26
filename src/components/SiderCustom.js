@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Layout, Menu, Icon } from "antd";
 import { NavLink } from "react-router-dom";
-const { Sider } = Layout;
 
 class SiderCustom extends Component {
   constructor(props) {
@@ -25,7 +24,7 @@ class SiderCustom extends Component {
 
   render() {
     return (
-      <Sider breakpoint='lg' collapsible={true}
+      <Layout.Sider breakpoint='lg' collapsible={true}
              collapsed={this.props.collapsed}
              onCollapse={this.onCollapse}
              style={{ overflowY: 'auto' }}
@@ -39,7 +38,7 @@ class SiderCustom extends Component {
               mode={this.state.mode}
         >
           <Menu.Item key="/app/dashboard/index">
-            <NavLink to={'/app/dashboard/index'}>
+            <NavLink to={'/app/dashboard/index'} replace>
               <Icon type="mobile" />
               <span className="nav-text">首页</span>
             </NavLink>
@@ -53,34 +52,34 @@ class SiderCustom extends Component {
                         }
           >
             <Menu.Item key='/app/ui/buttons'>
-              <NavLink to='/app/ui/buttons'>按钮</NavLink>
+              <NavLink to='/app/ui/buttons' replace>按钮</NavLink>
             </Menu.Item>
             <Menu.Item key='/app/ui/icons'>
-              <NavLink to='/app/ui/icons'>图标</NavLink>
+              <NavLink to='/app/ui/icons' replace>图标</NavLink>
             </Menu.Item>
             <Menu.Item key='/app/ui/spins'>
-              <NavLink to='/app/ui/spins'>加载中</NavLink>
+              <NavLink to='/app/ui/spins' replace>加载中</NavLink>
             </Menu.Item>
             <Menu.Item key='/app/ui/modals'>
-              <NavLink to='/app/ui/modals'>对话框</NavLink>
+              <NavLink to='/app/ui/modals' replace>对话框</NavLink>
             </Menu.Item>
             <Menu.Item key='/app/ui/notifications'>
-              <NavLink to='/app/ui/notifications'>通知提醒框</NavLink>
+              <NavLink to='/app/ui/notifications' replace>通知提醒框</NavLink>
             </Menu.Item>
             <Menu.Item key='/app/ui/tabs'>
-              <NavLink to='/app/ui/tabs'>标签页</NavLink>
+              <NavLink to='/app/ui/tabs' replace>标签页</NavLink>
             </Menu.Item>
             <Menu.Item key='/app/ui/banners'>
-              <NavLink to='/app/ui/banners'>轮播图</NavLink>
+              <NavLink to='/app/ui/banners' replace>轮播图</NavLink>
             </Menu.Item>
             <Menu.Item key='/app/ui/wysiwyg'>
-              <NavLink to='/app/ui/wysiwyg'>富文本</NavLink>
+              <NavLink to='/app/ui/wysiwyg' replace>富文本</NavLink>
             </Menu.Item>
             <Menu.Item key='/app/ui/draggable'>
-              <NavLink to='/app/ui/draggable'>拖拽</NavLink>
+              <NavLink to='/app/ui/draggable' replace>拖拽</NavLink>
             </Menu.Item>
             <Menu.Item key='/app/ui/gallery'>
-              <NavLink to='/app/ui/gallery'>画廊</NavLink>
+              <NavLink to='/app/ui/gallery' replace>画廊</NavLink>
             </Menu.Item>
           </Menu.SubMenu>
           <Menu.SubMenu key='/app/animation'
@@ -92,10 +91,10 @@ class SiderCustom extends Component {
                         }
           >
             <Menu.Item key='/app/animation/basicAnimations'>
-              <NavLink to='/app/animation/basicAnimations'>基础动画</NavLink>
+              <NavLink to='/app/animation/basicAnimations' replace>基础动画</NavLink>
             </Menu.Item>
             <Menu.Item key='/app/animation/exampleAnimations'>
-              <NavLink to='/app/animation/exampleAnimations'>动画案例</NavLink>
+              <NavLink to='/app/animation/exampleAnimations' replace>动画案例</NavLink>
             </Menu.Item>
           </Menu.SubMenu>
           <Menu.SubMenu key='/app/table'
@@ -107,13 +106,13 @@ class SiderCustom extends Component {
                         }
           >
             <Menu.Item key='/app/table/basicTable'>
-              <NavLink to='/app/table/basicTable'>基础表格</NavLink>
+              <NavLink to='/app/table/basicTable' replace>基础表格</NavLink>
             </Menu.Item>
             <Menu.Item key='/app/table/advancedTable'>
-              <NavLink to='/app/table/advancedTable'>高级表格</NavLink>
+              <NavLink to='/app/table/advancedTable' replace>高级表格</NavLink>
             </Menu.Item>
             <Menu.Item key='/app/table/asynchronousTable'>
-              <NavLink to='/app/table/asynchronousTable'>异步表格</NavLink>
+              <NavLink to='/app/table/asynchronousTable' replace>异步表格</NavLink>
             </Menu.Item>
           </Menu.SubMenu>
           <Menu.SubMenu key='/app/form'
@@ -125,7 +124,7 @@ class SiderCustom extends Component {
                         }
           >
             <Menu.Item key='/app/form/basicForm'>
-              <NavLink to='/app/form/basicForm'>基础表单</NavLink>
+              <NavLink to='/app/form/basicForm' replace>基础表单</NavLink>
             </Menu.Item>
           </Menu.SubMenu>
           <Menu.SubMenu key='/app/chart'
@@ -137,10 +136,10 @@ class SiderCustom extends Component {
                         }
           >
             <Menu.Item key='/app/chart/echarts'>
-              <NavLink to='/app/chart/echarts'>echarts</NavLink>
+              <NavLink to='/app/chart/echarts' replace>echarts</NavLink>
             </Menu.Item>
             <Menu.Item key='/app/chart/recharts'>
-              <NavLink to='/app/chart/recharts'>recharts</NavLink>
+              <NavLink to='/app/chart/recharts' replace>recharts</NavLink>
             </Menu.Item>
           </Menu.SubMenu>
           <Menu.SubMenu title={
@@ -151,10 +150,10 @@ class SiderCustom extends Component {
                         }
           >
             <Menu.Item key='/login'>
-              <NavLink to='/login'>登录</NavLink>
+              <NavLink to='/login' replace>登录</NavLink>
             </Menu.Item>
             <Menu.Item key='/404'>
-              <NavLink to='/404'>404</NavLink>
+              <NavLink to='/404' replace>404</NavLink>
             </Menu.Item>
           </Menu.SubMenu>
         </Menu>
@@ -166,7 +165,7 @@ class SiderCustom extends Component {
             }
           `}
         </style>
-      </Sider>
+      </Layout.Sider>
     );
   }
 

@@ -55,13 +55,13 @@ class Gallery extends Component {
     ];
     const imgsTag = imgs.map(item1 => {
       return (
-        item1.map((item2, index) => {
+        item1.map((item2, key) => {
           return (
-            <div className="gutter-box">
+            <div className="gutter-box" key={key}>
               <Card bordered={false} bodyStyle={{ padding: 0 }}>
                 <div>
                   <img onClick={() => this.openGallery(item2)} alt="example"
-                       width="100%" src={'/gallery/' + item2} key={index}
+                       width="100%" src={'/gallery/' + item2}
                   />
                 </div>
                 <div className="pa-m">

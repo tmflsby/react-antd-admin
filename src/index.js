@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import 'animate.css';
+import 'default-passive-events';
 import Router from './Router';
 import * as serviceWorker from './serviceWorker';
 
