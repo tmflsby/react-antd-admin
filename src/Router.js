@@ -23,6 +23,8 @@ import Drags from "./components/ui/Draggable";
 import Gallery from "./components/ui/Gallery";
 import BasicAnimations from "./components/animation/BasicAnimations";
 import ExampleAnimations from "./components/animation/ExampleAnimations";
+import BasicAuth from "./components/auth/Basic";
+import RouterEnter from "./components/auth/RouterEnter";
 
 const MyLoadingComponent = ({ isLoading, error }) => {
   if (isLoading) {
@@ -92,6 +94,12 @@ class Router extends Component {
               <Switch>
                 <Route path='/login' component={Login}/>
                 <Route path='/404' component={NotFound}/>
+              </Switch>
+            }/>
+            <Route path='/app/auth' render={() =>
+              <Switch>
+                <Route path='/app/auth/basic' component={BasicAuth}/>
+                <Route path='/app/auth/routerEnter' component={RouterEnter}/>
               </Switch>
             }/>
           </App>

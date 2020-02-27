@@ -1,8 +1,11 @@
 import React, { Component } from "react";
-import { Layout } from 'antd';
+import { Layout } from "antd";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 import "./style/index.less";
-import SiderCustom from './components/SiderCustom';
-import HeaderCustom from './components/HeaderCustom';
+import SiderCustom from "./components/SiderCustom";
+import HeaderCustom from "./components/HeaderCustom";
+import { receiveData } from "./store/actions";
 
 class App extends Component {
   constructor(props) {
@@ -10,6 +13,11 @@ class App extends Component {
     this.state = {
       collapsed: false
     };
+  }
+
+  componentDidMount() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    user && this.props.receiveData(user, 'auth');
   }
 
   toggle = () => {
@@ -23,7 +31,7 @@ class App extends Component {
       <Layout className='ant-layout-has-sider'>
         <SiderCustom collapsed={this.state.collapsed}/>
         <Layout>
-          <HeaderCustom toggle={this.toggle}/>
+          <HeaderCustom toggle={this.toggle} user={this.props.auth.data || {}} router={this.props.router}/>
           <Layout.Content style={{ margin: '0 16px', overflow: 'initial', flex: '1 1 0' }}>
             {this.props.children}
           </Layout.Content>
@@ -34,4 +42,16 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    auth: state.getIn(['httpDataReducer', 'auth'])
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    receiveData: bindActionCreators(receiveData, dispatch)
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

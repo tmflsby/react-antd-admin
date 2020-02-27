@@ -1,12 +1,43 @@
 import React, { Component } from "react";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { fetchData, receiveData } from "../store/actions";
 
 class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    };
+  }
+
+  componentDidMount() {
+    this.props.receiveData(null, 'auth');
+  }
+
+  static getDerivedStateFromProps(nextProps) {
+    const { auth: nextAuth = {} } = nextProps;
+    const LoginComponent = new Login(nextProps);
+    if (nextAuth.data && nextAuth.data.uid) {    // 判断是否登陆
+      LoginComponent.localStorage.setItem('user', JSON.stringify(nextAuth.data));
+      LoginComponent.router.push('/');
+    }
+    return null;
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of Form: ', values);
+        const { fetchData } = this.props;
+        if (values.userName === 'admin' && values.password === 'admin') {
+          return fetchData({funcName: 'admin', stateName: 'auth'});
+        }
+        if (values.userName === 'guest' && values.password === 'guest') {
+          return fetchData({funcName: 'guest', stateName: 'auth'});
+        }
       }
     });
   };
@@ -35,7 +66,8 @@ class Login extends Component {
                   ]
                 })(
                   <Input prefix={<Icon type='user' style={{ fontSize: 13 }}/>}
-                         placeholder="用户名" autoComplete='username'
+                         placeholder="管理员输入admin, 游客输入guest"
+                         autoComplete='username'
                   />
                 )
               }
@@ -51,7 +83,8 @@ class Login extends Component {
                   ]
                 })(
                   <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />}
-                         type="password" placeholder="密码" autoComplete='current-password'
+                         type="password" placeholder="管理员输入admin, 游客输入guest"
+                         autoComplete='current-password'
                   />
                 )
               }
@@ -81,4 +114,17 @@ class Login extends Component {
   }
 }
 
-export default Form.create()(Login);
+const mapStateToProps = (state) => {
+  return {
+    auth: state.getIn(['httpDataReducer', 'auth'])
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchData: bindActionCreators(fetchData, dispatch),
+    receiveData: bindActionCreators(receiveData, dispatch)
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form.create()(Login));

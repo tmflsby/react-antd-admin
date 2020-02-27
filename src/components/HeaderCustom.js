@@ -40,6 +40,15 @@ class HeaderCustom extends Component {
     }
   };
 
+  menuClick = (e) => {
+    e.key === 'logout' && this.logout();
+  };
+
+  logout = () => {
+    localStorage.removeItem('user');
+    this.props.router.push('/login')
+  };
+
   render() {
     return (
       <Layout.Header className="custom-theme" style={{ background: '#fff', padding: 0, height: 65 }}>
@@ -47,7 +56,7 @@ class HeaderCustom extends Component {
               type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
               onClick={this.props.toggle}
         />
-        <Menu mode='horizontal' style={{ lineHeight: '64px', float: 'right' }}>
+        <Menu onClick={this.menuClick} mode='horizontal' style={{ lineHeight: '64px', float: 'right' }}>
           <Menu.Item key="full" onClick={this.screenFull} >
             <Icon type="arrows-alt" onClick={this.screenFull} />
           </Menu.Item>
@@ -64,8 +73,11 @@ class HeaderCustom extends Component {
                         }
           >
             <Menu.ItemGroup title='用户中心'>
-              <Menu.Item key='setting:1'>你好-{this.state.user.login}</Menu.Item>
+              <Menu.Item key='setting:1'>你好-{this.props.user.username}</Menu.Item>
               <Menu.Item key="setting:2">个人信息</Menu.Item>
+              <Menu.Item key="logout">
+                <span onClick={this.logout}>退出登录</span>
+              </Menu.Item>
             </Menu.ItemGroup>
             <Menu.ItemGroup title='设置中心'>
               <Menu.Item key='setting:3'>个人设置</Menu.Item>

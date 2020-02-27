@@ -155,6 +155,21 @@ class SiderCustom extends Component {
               <NavLink to='/404' replace>404</NavLink>
             </Menu.Item>
           </Menu.SubMenu>
+          <Menu.SubMenu key='/app/auth'
+                        title={
+                          <span>
+                            <Icon type="safety" />
+                            <span className="nav-text">权限管理</span>
+                          </span>
+                        }
+          >
+            <Menu.Item key='/app/auth/basic'>
+              <NavLink to='/app/auth/basic' replace>基础演示</NavLink>
+            </Menu.Item>
+            <Menu.Item key='/app/auth/routerEnter'>
+              <NavLink to='/app/auth/routerEnter' replace>路由拦截</NavLink>
+            </Menu.Item>
+          </Menu.SubMenu>
         </Menu>
         <style>
           {`
