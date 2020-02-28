@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 import Loadable from "react-loadable";
 import App from "./App";
 import Buttons from "./components/ui/Buttons";
@@ -99,7 +100,8 @@ class Router extends Component {
             <Route path='/app/auth' render={() =>
               <Switch>
                 <Route path='/app/auth/basic' component={BasicAuth}/>
-                <Route path='/app/auth/routerEnter' component={RouterEnter}/>
+                <Route path='/app/auth/routerEnter'
+                       component={() => this.requireAuth('/app/auth/testPage', <RouterEnter/>)}/>
               </Switch>
             }/>
           </App>
@@ -107,6 +109,18 @@ class Router extends Component {
       </HashRouter>
     );
   }
+
+  requireAuth = (permission, component) => {
+    const { auth } = this.props.auth;
+    if (!auth || !auth.data.permissions.includes(permission)) window.location.hash = '/404';
+    return component;
+  }
 }
 
-export default Router;
+const mapStateToProps = (state) => {
+  return {
+    auth: state.getIn(['httpDataReducer', 'auth'])
+  }
+};
+
+export default connect(mapStateToProps)(Router);

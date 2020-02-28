@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 class AuthWidget extends Component {
   render() {
-    return this.props.children(this.props.auth);
+    return this.props.children(this.props.auth || {});
   }
 }
 
