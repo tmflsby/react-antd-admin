@@ -17,14 +17,14 @@ class Spins extends Component {
       <div className="gutter-example button-demo">
         <BreadcrumbCustom first="UI" second="加载中" />
         <Row gutter={16}>
-          <Col className="gutter-row" span={12}>
+          <Col className="gutter-row" md={12}>
             <div className="gutter-box">
               <Card bordered={false}>
                 <Spin />
               </Card>
             </div>
           </Col>
-          <Col className="gutter-row" span={12}>
+          <Col className="gutter-row" md={12}>
             <div className="gutter-box">
               <Card bordered={false}>
                 <Spin size="small" />
@@ -35,7 +35,7 @@ class Spins extends Component {
           </Col>
         </Row>
         <Row gutter={16}>
-          <Col className="gutter-row" span={12}>
+          <Col className="gutter-row" md={12}>
             <div className="gutter-box">
               <Card bordered={false}>
                 <Spin tip="Loading...">
@@ -46,7 +46,7 @@ class Spins extends Component {
               </Card>
             </div>
           </Col>
-          <Col className="gutter-row" span={12}>
+          <Col className="gutter-row" md={12}>
             <div className="gutter-box">
               <Card bordered={false}>
                 <Spin spinning={this.state.loading}>
@@ -60,7 +60,7 @@ class Spins extends Component {
               </Card>
             </div>
           </Col>
-          <Col className="gutter-row" span={12}>
+          <Col className="gutter-row" md={12}>
             <div className="gutter-box">
               <Card bordered={false} title='顶部进度条'>
                 <p>

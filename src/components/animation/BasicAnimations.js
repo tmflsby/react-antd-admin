@@ -59,7 +59,7 @@ class BasicAnimations extends Component {
           {
             animations.map((v, i) => {
               return (
-                <Col className="gutter-row" span={6} key={i}>
+                <Col className="gutter-row" md={6} key={i}>
                   <div className="gutter-box">
                     <Card
                       className={`

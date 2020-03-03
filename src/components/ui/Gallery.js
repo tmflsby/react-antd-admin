@@ -83,19 +83,19 @@ class Gallery extends Component {
       <div className="gutter-example button-demo">
         <BreadcrumbCustom first='UI' second='画廊'/>
         <Row gutter={10}>
-          <Col className="gutter-row" span={5}>
+          <Col className="gutter-row" md={5}>
             {imgsTag[0]}
           </Col>
-          <Col className="gutter-row" span={5}>
+          <Col className="gutter-row" md={5}>
             {imgsTag[1]}
           </Col>
-          <Col className="gutter-row" span={5}>
+          <Col className="gutter-row" md={5}>
             {imgsTag[2]}
           </Col>
-          <Col className="gutter-row" span={5}>
+          <Col className="gutter-row" md={5}>
             {imgsTag[3]}
           </Col>
-          <Col className="gutter-row" span={4}>
+          <Col className="gutter-row" md={4}>
             {imgsTag[4]}
           </Col>
         </Row>
