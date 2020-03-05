@@ -53,7 +53,7 @@ class HeaderCustom extends Component {
     return (
       <Layout.Header className="custom-theme" style={{ background: '#fff', padding: 0, height: 65 }}>
         <Icon className="trigger custom-trigger"
-              type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
+              type={this.props.collapsed ? 'menu-unfold' : 'menu-fold'}
               onClick={this.props.toggle}
         />
         <Menu onClick={this.menuClick} mode='horizontal' style={{ lineHeight: '64px', float: 'right' }}>

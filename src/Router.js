@@ -101,7 +101,7 @@ class Router extends Component {
               <Switch>
                 <Route path='/app/auth/basic' component={BasicAuth}/>
                 <Route path='/app/auth/routerEnter'
-                       component={() => this.requireAuth('/app/auth/testPage', <RouterEnter/>)}/>
+                       component={(props) => this.requireAuth('/app/auth/testPage', <RouterEnter {...props} />)}/>
               </Switch>
             }/>
           </App>
@@ -119,7 +119,7 @@ class Router extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.getIn(['httpDataReducer', 'auth'])
+    auth: state.getIn(['httpDataReducer', 'auth', 'data'])
   }
 };
 

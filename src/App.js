@@ -31,7 +31,9 @@ class App extends Component {
       <Layout className='ant-layout-has-sider'>
         <SiderCustom collapsed={this.state.collapsed}/>
         <Layout>
-          <HeaderCustom toggle={this.toggle} user={this.props.auth.data || {}} router={this.props.router}/>
+          <HeaderCustom toggle={this.toggle} user={this.props.auth.data || {}}
+                        router={this.props.router} collapsed={this.state.collapsed}
+          />
           <Layout.Content style={{ margin: '0 16px', overflow: 'initial', flex: '1 1 0' }}>
             {this.props.children}
           </Layout.Content>
