@@ -21,7 +21,7 @@ class Login extends Component {
     const LoginComponent = new Login(nextProps);
     if (nextAuth.data && nextAuth.data.uid) {    // 判断是否登陆
       window.localStorage.setItem('user', JSON.stringify(nextAuth.data));
-      LoginComponent.props.location.replace('/');
+      LoginComponent.props.history.push('/');
     }
     return null;
   }

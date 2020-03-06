@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Layout } from "antd";
+import { Layout, notification, Icon } from "antd";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import "./style/index.less";
@@ -19,11 +19,30 @@ class App extends Component {
   componentDidMount() {
     const user = JSON.parse(localStorage.getItem('user'));
     user && this.props.receiveData(user, 'auth');
+
     this.getClientWidth();
     window.onresize = () => {
       console.log('屏幕变化了');
       this.getClientWidth();
-    }
+    };
+
+    const openNotification = () => {
+      notification.open({
+        message: '帅🐏',
+        description: (
+          <div>
+            <p>
+              GitHub地址： <a href="https://github.com/tmflsby" target="_blank" rel="noopener noreferrer">https://github.com/tmflsby</a>
+            </p>
+          </div>
+        ),
+        icon: <Icon type="smile-circle" style={{ color: 'red' }}/>,
+        duration: 0
+      });
+      window.localStorage.setItem('isFirst', JSON.stringify(true));
+    };
+    const isFirst = JSON.parse(window.localStorage.getItem('isFirst'));
+    !isFirst && openNotification();
   }
 
   getClientWidth = () => { // 获取当前浏览器宽度并设置responsive管理响应式

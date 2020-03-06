@@ -34,7 +34,7 @@ class Routers extends Component {
     const { auth } = this.props;
     const { permissions } = auth.data;
     if (!permissions || !permissions.includes(permission)) {
-      return <Redirect to={'404'} push />;
+      return <Redirect to={'404'} />;
     }
     return component;
   };
