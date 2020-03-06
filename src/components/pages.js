@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class Views extends Component {
+class Pages extends Component {
   render() {
     return (
       <div style={{ height: '100%' }}>
@@ -10,4 +10,4 @@ class Views extends Component {
   }
 }
 
-export default Views;
+export default Pages;

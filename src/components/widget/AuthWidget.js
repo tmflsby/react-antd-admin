@@ -8,8 +8,9 @@ class AuthWidget extends Component {
 }
 
 const mapStateToProps = (state) => {
+  const { auth = {data: {}}} = state.httpDataReducer;
   return {
-    auth: state.getIn(['httpDataReducer', 'auth']),
+    auth
   };
 };
 

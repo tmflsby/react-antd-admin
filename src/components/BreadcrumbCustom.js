@@ -75,11 +75,13 @@ class BreadcrumbCustom extends Component {
             ${this.state.theme ?
             (`
               .custom-theme {
-                background: ${this.state.theme.header.background} !important;
+                // background: ${this.state.theme.header.background} !important;
+                background: linear-gradient(to right,${this.state.theme.header.background} 0,${this.state.theme.header.background}90 100%) !important;
                 color: #fff !important;
               }
               .custom-theme .ant-menu {
-                background: ${this.state.theme.header.background} !important;
+                // background: ${this.state.theme.header.background} !important;
+                background: transparent !important;
                 color: #fff !important;
               }
               .custom-theme .ant-menu-item-group-title {

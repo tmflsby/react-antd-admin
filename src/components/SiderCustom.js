@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Layout, Menu, Icon } from "antd";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 
 class SiderCustom extends Component {
   constructor(props) {
@@ -8,19 +8,56 @@ class SiderCustom extends Component {
     this.state = {
       mode: 'inline',
       openKey: '',
-      selectedKey: ''
+      selectedKey: '',
+      firstHide: true    // 点击收缩菜单，第一次隐藏展开子菜单，openMenu时恢复
     };
   }
 
-  static getDerivedStateFromProps(nextProps, preState) {
-    if (nextProps.collapsed !== preState.collapsed) {
-      const state2 = SiderCustom.onCollapse(nextProps.collapsed);
-      return {
-        ...state2
-      };
-    }
+  componentDidMount() {
+    SiderCustom.setMenuOpen(this.props);
+  }
+
+  static getDerivedStateFromProps(nextProps) {
+    SiderCustom.onCollapse(nextProps.collapsed);
+    SiderCustom.setMenuOpen(nextProps);
     return null;
   }
+
+  static onCollapse = collapsed => {
+    return {
+      collapsed,
+      firstHide: collapsed,
+      mode: collapsed ? 'vertical' : 'inline'
+    };
+  };
+
+  static setMenuOpen = (props) => {
+    const { pathname } = props.location;
+    console.log(props)
+    return {
+      openKey: pathname.substr(0, pathname.lastIndexOf('/')),
+      selectedKey: pathname
+    };
+  };
+
+  menuClick = e => {
+    this.setState({
+      selectedKey: e.key
+    });
+    console.log('menuClick', this.state);
+
+    const { popoverHide } = this.props;     // 响应式布局控制小屏幕点击菜单时隐藏菜单操作
+    popoverHide && popoverHide();
+  };
+
+  openMenu = v => {
+    console.log(v);
+    this.setState({
+      openKey: v[v.length - 1],
+      firstHide: false
+    });
+    console.log('openMenu', this.state);
+  };
 
   render() {
     return (
@@ -30,11 +67,10 @@ class SiderCustom extends Component {
                     trigger={null}
       >
         <div className="logo"/>
-        <Menu theme='dark' onClick={this.menuClick}
+        <Menu theme='dark' mode='inline' onClick={this.menuClick}
+              openKeys={this.state.firstHide ? null : [this.state.openKey]}
               selectedKeys={[this.state.selectedKey]}
-              openKeys={[this.state.openKey]}
               onOpenChange={this.openMenu}
-              mode={this.state.mode}
         >
           <Menu.Item key="/app/dashboard/index">
             <NavLink to={'/app/dashboard/index'} replace>
@@ -182,28 +218,6 @@ class SiderCustom extends Component {
       </Layout.Sider>
     );
   }
-
-  static onCollapse = collapsed => {
-    return {
-      collapsed,
-      mode: collapsed ? 'vertical' : 'inline'
-    };
-  };
-
-  menuClick = e => {
-    this.setState({
-      selectedKey: e.key
-    });
-    console.log('menuClick', this.state);
-  };
-
-  openMenu = v => {
-    console.log(v);
-    this.setState({
-      openKey: v[v.length - 1]
-    });
-    console.log('openMenu', this.state);
-  };
 }
 
-export default SiderCustom;
+export default withRouter(SiderCustom);

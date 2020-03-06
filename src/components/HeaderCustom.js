@@ -1,15 +1,19 @@
 import React, { Component } from "react";
-import { Menu, Icon, Layout, Badge } from "antd";
+import { Menu, Icon, Layout, Badge, Popover } from "antd";
 import screenfull from "screenfull";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { gitOauthInfo, gitOauthToken } from "../axios";
 import { queryString } from "../utils";
 import avater from "../style/imgs/b1.jpg";
+import SiderCustom from "./SiderCustom";
 
 class HeaderCustom extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: ''
+      user: '',
+      visible: false
     };
   }
 
@@ -49,13 +53,36 @@ class HeaderCustom extends Component {
     this.props.router.push('/login')
   };
 
+  popoverHide = () => {
+    this.setState({
+      visible: false
+    });
+  };
+
+  handleVisibleChange = (visible) => {
+    this.setState({
+      visible
+    });
+  };
+
   render() {
     return (
       <Layout.Header className="custom-theme" style={{ background: '#fff', padding: 0, height: 65 }}>
-        <Icon className="trigger custom-trigger"
-              type={this.props.collapsed ? 'menu-unfold' : 'menu-fold'}
-              onClick={this.props.toggle}
-        />
+        {
+          this.props.responsive.data.isMobile ? (
+            <Popover content={<SiderCustom path={this.props.path} popoverHide={this.popoverHide}/>}
+                     trigger='click' placement='bottomLeft' visible={this.state.visible}
+                     onVisibleChange={this.handleVisibleChange}
+            >
+              <Icon type="bars" className="trigger custom-trigger" />
+            </Popover>
+          ) : (
+            <Icon className="trigger custom-trigger"
+                  type={this.props.collapsed ? 'menu-unfold' : 'menu-fold'}
+                  onClick={this.props.toggle}
+            />
+          )
+        }
         <Menu onClick={this.menuClick} mode='horizontal' style={{ lineHeight: '64px', float: 'right' }}>
           <Menu.Item key="full" onClick={this.screenFull} >
             <Icon type="arrows-alt" onClick={this.screenFull} />
@@ -98,4 +125,11 @@ class HeaderCustom extends Component {
   }
 }
 
-export default HeaderCustom;
+const mapStateToProps = (state) => {
+  const { responsive = {data: {}} } = state.httpDataReducer;
+  return {
+    responsive
+  };
+};
+
+export default withRouter(connect(mapStateToProps)(HeaderCustom));
