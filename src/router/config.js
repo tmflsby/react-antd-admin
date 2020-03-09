@@ -1,6 +1,3 @@
-import Login from "../components/pages/Login";
-import NotFound from "../components/pages/NotFound";
-
 export default {
   menus: [
     // 菜单相关路由
@@ -96,7 +93,7 @@ export default {
       key: '/app/cssModule',
       title: 'cssModule',
       icon: 'star',
-      component: 'Cssmodule'
+      component: 'CssModule'
     },
     {
       key: '/app/extension',

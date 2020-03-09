@@ -22,6 +22,7 @@ import BasicAuth from "../components/auth/Basic";
 import RouterEnter from "../components/auth/RouterEnter";
 import Wysiwyg from "../components/ui/Wysiwyg";
 import Bundle from "../components/widget/Bundle";
+import CssModule from "../components/cssModule";
 
 const WysiwygBundle = (props) => (
   <Bundle load={Wysiwyg}>
@@ -71,6 +72,8 @@ class Routers extends Component {
         <Route path='/app/auth/routerEnter'
                component={(props) => this.requireAuth('auth/testPage', <RouterEnter {...props} />)}
         />
+
+        <Route path='/app/cssModule' component={CssModule}/>
 
         <Route render={() => <Redirect to="/404" />} />
       </Switch>
