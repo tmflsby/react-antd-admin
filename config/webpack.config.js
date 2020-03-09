@@ -29,6 +29,8 @@ const postcssNormalize = require('postcss-normalize');
 
 const appPackageJson = require(paths.appPackageJson);
 
+const theme = require('../src/antdTheme');
+
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 // Some apps do not need the benefits of saving a web request, so not inlining the chunk
@@ -385,7 +387,7 @@ module.exports = function(webpackEnv) {
                   options: {
                     modules: false,
                     javascriptEnabled: true,
-                    modifyVars: { "@primary-color": "#001529" }
+                    modifyVars: theme
                   }
                 },
               ]
