@@ -3,7 +3,7 @@ import { Layout, notification, Icon } from "antd";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import "./style/index.less";
-import Router from "./routers";
+import Router from "./router";
 import SiderCustom from "./components/SiderCustom";
 import HeaderCustom from "./components/HeaderCustom";
 import { receiveData } from "./store/actions";
