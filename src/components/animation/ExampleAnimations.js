@@ -24,7 +24,7 @@ class ExampleAnimations extends Component {
         dataIndex: 'operation',
         render: (text, record, index) => {
           return (
-            (this.state.dataSource.length > 1) ?
+            (this.state.dataSource.length > 0) ?
               (
                 <Popconfirm title="Sure to delete?" onConfirm={() => this.onDelete(record, index)}>
                   <a href="#/app/animation/exampleAnimations">Delete</a>

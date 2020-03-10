@@ -70,19 +70,19 @@ class App extends Component {
             <Router auth={this.props.auth}/>
           </Layout.Content>
           <Layout.Footer style={{ textAlign: 'center' }}>
-            React-Admin ©2020 Created by 帅洋
+            React-Admin ©{new Date().getFullYear()} Created by 帅洋
           </Layout.Footer>
         </Layout>
         {
-          this.props.responsive.data.isMobile && ( // 手机端对滚动很慢的处理
-            <style>
-              {`
-                #root {
-                  height: auto;
-                }
-              `}
-            </style>
-          )
+          // this.props.responsive.data.isMobile && ( // 手机端对滚动很慢的处理
+          //   <style>
+          //     {`
+          //       #root {
+          //         height: auto;
+          //       }
+          //     `}
+          //   </style>
+          // )
         }
       </Layout>
     );

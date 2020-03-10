@@ -2,28 +2,27 @@ import React from "react";
 import { Menu, Icon } from "antd";
 import { NavLink } from "react-router-dom";
 
-const renderMenuItem = ({ key, title, icon, link, ...props }) => {
+const renderMenuItem = (item) => {
   return (
-    <Menu.Item key={ key || link } { ...props }>
-      <NavLink to={ key || link }>
-        { icon && <Icon type={ icon }/> }
-        <span className="nav-text">{ title }</span>
+    <Menu.Item key={ item.key}>
+      <NavLink to={ item.key}>
+        { item.icon && <Icon type={ item.icon }/> }
+        <span className="nav-text">{ item.title }</span>
       </NavLink>
     </Menu.Item>
   );
 }
-const renderSubMenu = ({ key, title, icon, link, subs, ...props }) => {
+const renderSubMenu = (item) => {
   return (
-    <Menu.SubMenu key={ key || link }
+    <Menu.SubMenu key={ item.key }
                   title={
                     <span>
-                          { icon && <Icon type={icon}/> }
-                      <span className="nav-text">{ title }</span>
+                          { item.icon && <Icon type={ item.icon }/> }
+                      <span className="nav-text">{ item.title }</span>
                         </span>
                   }
-                  { ...props }
     >
-      { subs && subs.map(item => renderMenuItem(item)) }
+      { item.subs && item.subs.map(item => renderMenuItem(item)) }
     </Menu.SubMenu>
   );
 };
@@ -34,7 +33,7 @@ const SiderMenu = ({ menus, ...props }) => {
       {
         menus && menus.map(item => {
           return (
-            item.subs && item.subs.length ? renderSubMenu(item) : renderMenuItem(item)
+            item.subs ? renderSubMenu(item) : renderMenuItem(item)
           );
         })
       }

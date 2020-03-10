@@ -90,14 +90,14 @@ class EditableTable extends Component {
                 {form => (
                   <Button
                     onClick={() => this.save(form, record.key)}
-                    style={{ width: 70 }}
+                    style={{ width: 70, height: 20, marginBottom: 2 }}
                   >
                     Save
                   </Button>
                 )}
               </EditableContext.Consumer>
               <Popconfirm title="Sure to cancel?" onConfirm={() => this.cancel(record.key)}>
-                <Button style={{ width: 70 }}>Cancel</Button>
+                <Button style={{ width: 70, height: 20, marginTop: 2, marginLeft: 0 }}>Cancel</Button>
               </Popconfirm>
             </span>
           ) : (

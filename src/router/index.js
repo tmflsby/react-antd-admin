@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
+import Loadable from "react-loadable";
 import Buttons from "../components/ui/Buttons";
 import Icons from "../components/ui/Icons";
 import Spins from "../components/ui/Spins";
@@ -20,22 +21,22 @@ import BasicAnimations from "../components/animation/BasicAnimations";
 import ExampleAnimations from "../components/animation/ExampleAnimations";
 import BasicAuth from "../components/auth/Basic";
 import RouterEnter from "../components/auth/RouterEnter";
-import Wysiwyg from "../components/ui/Wysiwyg";
-import Bundle from "../components/widget/Bundle";
 import CssModule from "../components/cssModule";
+import Map from "../components/ui/map/Map";
+import Loading from "../components/widget/Loading";
 
-const WysiwygBundle = (props) => (
-  <Bundle load={Wysiwyg}>
-    {(Component) => <Component {...props} />}
-  </Bundle>
-);
+// 按需加载富文本配置
+const Wysiwyg = Loadable({
+  loader: () => import('../components/ui/Wysiwyg'),
+  loading: Loading
+});
 
 class Routers extends Component {
   requireAuth = (permission, component) => {
     const { auth } = this.props;
     const { permissions } = auth.data;
     if (!permissions || !permissions.includes(permission)) {
-      return <Redirect to={'404'} />;
+      return <Redirect to={'/404'} />;
     }
     return component;
   };
@@ -52,9 +53,10 @@ class Routers extends Component {
         <Route path='/app/ui/notifications' component={Notifications} />
         <Route path='/app/ui/tabs' component={TabsCustom} />
         <Route path='/app/ui/banners' component={Banners} />
-        <Route path='/app/ui/wysiwyg' component={WysiwygBundle} />
-        <Route path='/app/ui/draggable' component={Drags} />
+        <Route path='/app/ui/wysiwyg' component={Wysiwyg} />
+        <Route path='/app/ui/drags' component={Drags} />
         <Route path='/app/ui/gallery' component={Gallery} />
+        <Route path='/app/ui/map' component={Map} />
 
         <Route path='/app/animation/basicAnimations' component={BasicAnimations} />
         <Route path='/app/animation/exampleAnimations' component={ExampleAnimations} />
