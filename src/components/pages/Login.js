@@ -16,14 +16,12 @@ class Login extends Component {
     this.props.receiveData(null, 'auth');
   }
 
-  static getDerivedStateFromProps(nextProps) {
-    const { auth: nextAuth = {} } = nextProps;
-    const LoginComponent = new Login(nextProps);
-    if (nextAuth.data && nextAuth.data.uid) {    // 判断是否登陆
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    const { auth: nextAuth = {}, history } = this.props;
+    if (nextAuth.data && nextAuth.data.uid) { // 判断是否登录
       window.localStorage.setItem('user', JSON.stringify(nextAuth.data));
-      LoginComponent.props.history.push('/');
+      history.push('/');
     }
-    return null;
   }
 
   handleSubmit = (e) => {

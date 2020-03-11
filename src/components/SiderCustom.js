@@ -8,6 +8,7 @@ class SiderCustom extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      collapsed: false,
       mode: 'inline',
       openKey: '',
       selectedKey: '',
@@ -16,13 +17,18 @@ class SiderCustom extends Component {
   }
 
   componentDidMount() {
-    SiderCustom.setMenuOpen(this.props);
+    const state = SiderCustom.setMenuOpen(this.props);
+    this.setState({state})
   }
 
-  static getDerivedStateFromProps(nextProps) {
-    SiderCustom.onCollapse(nextProps.collapsed);
-    SiderCustom.setMenuOpen(nextProps);
-    return null;
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const state1 = SiderCustom.onCollapse(nextProps.collapsed);
+    const state2 = SiderCustom.setMenuOpen(nextProps);
+    return {
+      ...state1,
+      ...state2,
+      ...prevState
+    };
   }
 
   static onCollapse = collapsed => {

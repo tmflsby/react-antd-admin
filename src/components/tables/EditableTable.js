@@ -12,6 +12,16 @@ for (let i = 1; i < 100; i++) {
 }
 const EditableContext = React.createContext();
 
+const EditableRow = ({ form, index, ...props }) => {
+  return (
+    <EditableContext.Provider value={form}>
+      <tr {...props}/>
+    </EditableContext.Provider>
+  );
+};
+
+const EditableFormRow = Form.create()(EditableRow);
+
 class EditableCell extends Component {
   getInput = () => {
     if (this.props.inputType === 'number') {
@@ -23,7 +33,7 @@ class EditableCell extends Component {
   renderCell = ({ getFieldDecorator }) => {
     const {
       editing, dataIndex, title, inputType,
-      record, index, children, ...restProps
+      record, index, ...restProps
     } = this.props;
 
     return (
@@ -44,7 +54,7 @@ class EditableCell extends Component {
               }
             </Form.Item>
           ) :
-          (children)
+          (restProps.children)
         }
       </td>
     );
@@ -58,7 +68,10 @@ class EditableCell extends Component {
 class EditableTable extends Component {
   constructor(props) {
     super(props);
-    this.state = { data, editingKey: '' };
+    this.state = {
+      data,
+      editingKey: ''
+    };
     this.columns = [
       {
         title: 'name',
@@ -82,28 +95,33 @@ class EditableTable extends Component {
         title: 'operation',
         dataIndex: 'operation',
         render: (text, record) => {
-          const { editingKey } = this.state;
           const editable = this.isEditing(record);
-          return editable ? (
-            <span>
-              <EditableContext.Consumer>
-                {form => (
-                  <Button
-                    onClick={() => this.save(form, record.key)}
-                    style={{ width: 70, height: 20, marginBottom: 2 }}
-                  >
-                    Save
+          return (
+            <div>
+              {
+                editable ? (
+                  <span>
+                    <EditableContext.Consumer>
+                      {form => (
+                        <Button
+                          onClick={() => this.save(form, record.key)}
+                          style={{ width: 70, height: 20, marginBottom: 2 }}
+                        >
+                          Save
+                        </Button>
+                      )}
+                    </EditableContext.Consumer>
+                    <Popconfirm title="Sure to cancel?" onConfirm={() => this.cancel(record.key)}>
+                      <Button style={{ width: 70, height: 20, marginTop: 2, marginLeft: 0 }}>Cancel</Button>
+                    </Popconfirm>
+                  </span>
+                ) : (
+                  <Button onClick={() => this.edit(record.key)}>
+                    Edit
                   </Button>
-                )}
-              </EditableContext.Consumer>
-              <Popconfirm title="Sure to cancel?" onConfirm={() => this.cancel(record.key)}>
-                <Button style={{ width: 70, height: 20, marginTop: 2, marginLeft: 0 }}>Cancel</Button>
-              </Popconfirm>
-            </span>
-          ) : (
-            <Button disabled={editingKey !== ''} onClick={() => this.edit(record.key)}>
-              Edit
-            </Button>
+                )
+              }
+            </div>
           );
         },
       },
@@ -145,6 +163,7 @@ class EditableTable extends Component {
     const components = {
       body: {
         cell: EditableCell,
+        row: EditableFormRow
       },
     };
 
@@ -165,21 +184,13 @@ class EditableTable extends Component {
     });
 
     return (
-      <EditableContext.Provider value={this.props.form}>
-        <Table
-          components={components}
-          bordered
-          dataSource={this.state.data}
-          columns={columns}
-          rowClassName="editable-row"
-          pagination={{
-            onChange: this.cancel,
-            defaultPageSize: 5
-          }}
-        />
-      </EditableContext.Provider>
+      <Table components={components} bordered
+             dataSource={this.state.data}
+             columns={columns}
+             rowClassName="editable-row"
+      />
     );
   }
 }
 
-export default Form.create()(EditableTable);
+export default EditableTable;
