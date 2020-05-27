@@ -17,7 +17,7 @@ const columns = [
     key: 'operation',
     fixed: 'right',
     width: 100,
-    render: () => <a href="#/app/table/advancedTable">action</a>,
+    render: () => <span>action</span>,
   },
 ];
 

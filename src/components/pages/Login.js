@@ -96,15 +96,15 @@ class Login extends Component {
                   <Checkbox>记住我</Checkbox>
                 )
               }
-              <a href="#/login" className="login-form-forgot" style={{ float: 'right' }}>忘记密码</a>
+              <span className="login-form-forgot" style={{ float: 'right' }}>忘记密码</span>
               <Button type='primary' htmlType='submit' className='login-form-button' style={{ width: '100%' }}>
                 登录
               </Button>
               <p style={{display: 'flex', justifyContent: 'space-between'}}>
-                <a href="#/login">或 现在就去注册!</a>
-                <a href='#/login' onClick={this.gitHub} >
+                <span>或 现在就去注册!</span>
+                <span onClick={this.gitHub} >
                   <Icon type="github" />(第三方登录)
-                </a>
+                </span>
               </p>
             </Form.Item>
           </Form>

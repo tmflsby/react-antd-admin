@@ -22,19 +22,23 @@ class SiderCustom extends Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    const state1 = SiderCustom.onCollapse(nextProps.collapsed);
-    const state2 = SiderCustom.setMenuOpen(nextProps);
-    return {
-      ...state1,
-      ...state2,
-      ...prevState
-    };
+    if (nextProps.collapsed !== prevState.collapsed) {
+      const state1 = SiderCustom.onCollapse(nextProps.collapsed);
+      const state2 = SiderCustom.setMenuOpen(nextProps);
+      return {
+        ...state1,
+        ...state2,
+        firstHide: prevState.collapsed !== nextProps.collapsed && nextProps.collapsed,  // 两个不等时赋值props属性值否则为false
+        openKey: prevState.openKey || (!nextProps.collapsed && state1.openKey)
+      };
+    }
+    return null;
   }
 
   static onCollapse = collapsed => {
     return {
       collapsed,
-      firstHide: collapsed,
+      // firstHide: collapsed,
       mode: collapsed ? 'vertical' : 'inline'
     };
   };
@@ -74,7 +78,7 @@ class SiderCustom extends Component {
                     trigger={null}
       >
         <div className="logo"/>
-        <SiderMenu menus={routerConfig.menus} theme='dark'
+        <SiderMenu menus={routerConfig.menus}
                    mode='inline' onClick={this.menuClick}
                    openKeys={this.state.firstHide ? null : [this.state.openKey]}
                    selectedKeys={[this.state.selectedKey]}

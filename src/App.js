@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { Layout, notification, Icon } from "antd";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import "./style/index.less";
 import Router from "./router";
 import SiderCustom from "./components/SiderCustom";
 import HeaderCustom from "./components/HeaderCustom";
+import ThemePicker from "./components/widget/ThemePicker";
 import { receiveData } from "./store/actions";
 
 class App extends Component {
@@ -46,7 +46,7 @@ class App extends Component {
   }
 
   getClientWidth = () => { // 获取当前浏览器宽度并设置responsive管理响应式
-    const clientWidth = document.body.clientWidth;
+    const clientWidth = window.innerWidth;
     this.props.receiveData({
       isMobile: clientWidth <= 992,
     }, 'responsive')
@@ -62,6 +62,7 @@ class App extends Component {
     return (
       <Layout>
         {!this.props.responsive.data.isMobile && <SiderCustom collapsed={this.state.collapsed}/>}
+        <ThemePicker/>
         <Layout style={{ flexDirection: 'column' }}>
           <HeaderCustom toggle={this.toggle} user={this.props.auth.data || {}}
                         collapsed={this.state.collapsed}

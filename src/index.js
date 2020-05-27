@@ -5,8 +5,10 @@ import { Provider } from 'react-redux';
 import Views from "./views";
 import * as serviceWorker from './serviceWorker';
 import store from "./store";
-import './index.css';
 import 'animate.css';
+import './index.css';
+import '../src/style/index.less';
+import '../src/style/antd/index.less'
 
 ReactDOM.render(
   <Provider store={store}>

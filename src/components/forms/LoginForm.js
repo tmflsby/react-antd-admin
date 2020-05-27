@@ -57,13 +57,13 @@ class LoginForm extends Component {
               <Checkbox>记住我</Checkbox>
             )
           }
-          <a href="#/app/form/basicForm" className="login-form-forgot">忘记密码</a>
+          <span className="login-form-forgot">忘记密码</span>
           <Button type='primary' className="login-form-button"
                   htmlType="submit" style={{ width: '100%' }}
           >
             登录
           </Button>
-          或<a href='#/app/form/basicForm'>现在就去注册</a>
+          或<span>现在就去注册</span>
         </Form.Item>
       </Form>
     );

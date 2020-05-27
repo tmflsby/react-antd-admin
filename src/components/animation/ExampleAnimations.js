@@ -27,7 +27,7 @@ class ExampleAnimations extends Component {
             (this.state.dataSource.length > 0) ?
               (
                 <Popconfirm title="Sure to delete?" onConfirm={() => this.onDelete(record, index)}>
-                  <a href="#/app/animation/exampleAnimations">Delete</a>
+                  <span>Delete</span>
                 </Popconfirm>
               ) : null
           );

@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, Icon } from "antd";
+import { Table, Icon, Button } from "antd";
 
 const columns = [
   {
@@ -8,7 +8,7 @@ const columns = [
     key: 'name',
     render: (text) => {
       return (
-        <a href="#/app/table/basicTable">{text}</a>
+        <span>{text}</span>
       );
     }
   },
@@ -28,14 +28,14 @@ const columns = [
     render: (text, record) => {
       return (
         <span>
-          <a href="#/app/table/basicTable">Action 一 {record.name}</a>
+          <Button>Action 一 {record.name}</Button>
           <span className="ant-divider" />
-          <a href="#/app/table/basicTable">Delete</a>
+          <Button>Delete</Button>
           <span className="ant-divider" />
-          <a href="#/app/table/basicTable" className="ant-dropdown-link">
+          <Button className="ant-dropdown-link">
             More actions
             <Icon type="down" />
-          </a>
+          </Button>
         </span>
       );
     }

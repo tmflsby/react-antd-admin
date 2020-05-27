@@ -5,13 +5,14 @@ import { NavLink } from "react-router-dom";
 const renderMenuItem = (item) => {
   return (
     <Menu.Item key={ item.key}>
-      <NavLink to={ item.key}>
+      <NavLink to={ item.key} replace>
         { item.icon && <Icon type={ item.icon }/> }
         <span className="nav-text">{ item.title }</span>
       </NavLink>
     </Menu.Item>
   );
-}
+};
+
 const renderSubMenu = (item) => {
   return (
     <Menu.SubMenu key={ item.key }

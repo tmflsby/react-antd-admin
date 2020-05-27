@@ -11,7 +11,7 @@ class CssModule extends Component {
         <Row gutter={16}>
           <Col md={24}>
             <Card title="cssModule" bordered={false}>
-              <div className='header'>
+              <div className='css-module-header'>
                 <p>Hello CssModule</p>
               </div>
             </Card>
