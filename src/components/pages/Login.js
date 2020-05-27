@@ -3,6 +3,7 @@ import { Form, Icon, Input, Button, Checkbox } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchData, receiveData } from "../../store/actions";
+import PwaInstaller from "../widget/PwaInstaller";
 
 class Login extends Component {
   constructor(props) {
@@ -51,6 +52,7 @@ class Login extends Component {
         <div className="login-form">
           <div className="login-logo">
             <span>React Admin</span>
+            <PwaInstaller />
           </div>
           <Form onSubmit={this.handleSubmit} style={{ maxWidth: 300 }}>
             <Form.Item>

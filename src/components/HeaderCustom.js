@@ -7,6 +7,7 @@ import { gitOauthInfo, gitOauthToken } from "../axios";
 import { queryString } from "../utils";
 import avater from "../style/imgs/b1.jpg";
 import SiderCustom from "./SiderCustom";
+import PwaInstaller from "./widget/PwaInstaller";
 
 class HeaderCustom extends Component {
   constructor(props) {
@@ -84,6 +85,9 @@ class HeaderCustom extends Component {
           )
         }
         <Menu onClick={this.menuClick} mode='horizontal' style={{ lineHeight: '64px', float: 'right' }}>
+          <Menu.Item key="pwa">
+            <PwaInstaller />
+          </Menu.Item>
           <Menu.Item key="full" onClick={this.screenFull} >
             <Icon type="arrows-alt" onClick={this.screenFull} />
           </Menu.Item>
