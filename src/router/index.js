@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Loadable from "react-loadable";
+import queryString from "query-string";
 import Buttons from "../components/ui/Buttons";
 import Icons from "../components/ui/Icons";
 import Spins from "../components/ui/Spins";
@@ -24,6 +25,7 @@ import RouterEnter from "../components/auth/RouterEnter";
 import CssModule from "../components/cssModule";
 import Map from "../components/ui/map/Map";
 import Loading from "../components/widget/Loading";
+import QueryParams from "../components/extension/QueryParams";
 
 // 按需加载富文本配置
 const Wysiwyg = Loadable({
@@ -76,6 +78,23 @@ class Routers extends Component {
         />
 
         <Route path='/app/cssModule' component={CssModule}/>
+
+        <Route path='/app/extension/queryParams'
+               render={ props => {
+                 const regExp = /\?\S*/g;  // 匹配?及其以后字符串
+                 const queryParams = window.location.hash.match(regExp);  // 去除?的参数
+
+                 const {params} = props.match;
+                 Object.keys(params).forEach(key => {
+                   params[key] = params[key] && params[key].replace(regExp, '');
+                 });
+
+                 props.match.params = {...params};
+                 const merge = {...props, query: queryParams ? queryString.parse(queryParams[0]) : {}};
+
+                 return <QueryParams {...merge}/>
+               }}
+        />
 
         <Route render={() => <Redirect to="/404" />} />
       </Switch>

@@ -4,8 +4,8 @@ import { NavLink } from "react-router-dom";
 
 const renderMenuItem = (item) => {
   return (
-    <Menu.Item key={ item.key}>
-      <NavLink to={ item.key} replace>
+    <Menu.Item key={ item.key }>
+      <NavLink to={ item.key + (item.query || '')} replace>
         { item.icon && <Icon type={ item.icon }/> }
         <span className="nav-text">{ item.title }</span>
       </NavLink>
