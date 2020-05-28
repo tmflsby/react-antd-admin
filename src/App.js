@@ -2,17 +2,19 @@ import React, { Component } from "react";
 import { Layout, notification, Icon } from "antd";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { receiveData } from "./store/actions";
 import Router from "./router";
+import DocumentTitle from "react-document-title";
 import SiderCustom from "./components/SiderCustom";
 import HeaderCustom from "./components/HeaderCustom";
 import ThemePicker from "./components/widget/ThemePicker";
-import { receiveData } from "./store/actions";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      collapsed: false
+      collapsed: false,
+      title: ''
     };
   }
 
@@ -58,34 +60,30 @@ class App extends Component {
     });
   };
 
+  _setTitle = (title) => {
+    if (this.state.title === title) return;
+    this.setState({ title })
+  };
+
   render() {
     return (
-      <Layout>
-        {!this.props.responsive.data.isMobile && <SiderCustom collapsed={this.state.collapsed}/>}
-        <ThemePicker/>
-        <Layout style={{ flexDirection: 'column' }}>
-          <HeaderCustom toggle={this.toggle} user={this.props.auth.data || {}}
-                        collapsed={this.state.collapsed}
-          />
-          <Layout.Content style={{ margin: '0 16px', overflow: 'initial', flex: '1 1 0' }}>
-            <Router auth={this.props.auth}/>
-          </Layout.Content>
-          <Layout.Footer style={{ textAlign: 'center' }}>
-            React-Admin ©{new Date().getFullYear()} Created by 帅洋
-          </Layout.Footer>
+      <DocumentTitle title={this.state.title}>
+        <Layout>
+          {!this.props.responsive.data.isMobile && <SiderCustom collapsed={this.state.collapsed}/>}
+          <ThemePicker/>
+          <Layout style={{ flexDirection: 'column' }}>
+            <HeaderCustom toggle={this.toggle} user={this.props.auth.data || {}}
+                          collapsed={this.state.collapsed}
+            />
+            <Layout.Content style={{ margin: '0 16px', overflow: 'initial', flex: '1 1 0' }}>
+              <Router auth={this.props.auth} onRouterChange={this._setTitle}/>
+            </Layout.Content>
+            <Layout.Footer style={{ textAlign: 'center' }}>
+              React-Admin ©{new Date().getFullYear()} Created by 帅洋
+            </Layout.Footer>
+          </Layout>
         </Layout>
-        {
-          // this.props.responsive.data.isMobile && ( // 手机端对滚动很慢的处理
-          //   <style>
-          //     {`
-          //       #root {
-          //         height: auto;
-          //       }
-          //     `}
-          //   </style>
-          // )
-        }
-      </Layout>
+      </DocumentTitle>
     );
   }
 }
