@@ -14,7 +14,7 @@ export default {
         { key: '/app/ui/notifications', title: '通知提醒框', component: 'Notifications' },
         { key: '/app/ui/tabs', title: '标签页', component: 'TabsCustom' },
         { key: '/app/ui/banners', title: '轮播图', component: 'Banners' },
-        { key: '/app/ui/wysiwyg', title: '富文本', component: 'WysiwygBundle' },
+        { key: '/app/ui/wysiwyg', title: '富文本', component: 'Wysiwyg' },
         { key: '/app/ui/drags', title: '拖拽', component: 'Drags' },
         { key: '/app/ui/gallery', title: '画廊', component: 'Gallery' },
         { key: '/app/ui/map', title: '地图', component: 'Map' }
@@ -42,7 +42,7 @@ export default {
       title: '表格',
       icon: 'copy',
       subs: [
-        { key: '/app/table/basicTable', title: '基础表格', component: 'BasicTable' },
+        { key: '/app/table/basicTable', title: '基础表格', component: 'BasicTables' },
         { key: '/app/table/advancedTable', title: '高级表格', component: 'AdvancedTables' },
         {
           key: '/app/table/asynchronousTable',

@@ -6,24 +6,27 @@ import AllComponents from "../components";
 import routerConfig from "./config";
 
 class Routers extends Component {
-  // requireAuth = (permission, component) => {
-  //   const { auth } = this.props;
-  //   const { permissions } = auth.data;
-  //   if (!permissions || !permissions.includes(permission)) {
-  //     return <Redirect to={'/404'} />;
-  //   }
-  //   return component;
-  // };
+  requireAuth = (permission, component) => {
+    const { auth } = this.props;
+    const { permissions } = auth.data;
+    if (!permissions || !permissions.includes(permission)) {
+      return <Redirect to={'/404'} />;
+    }
+    return component;
+  };
 
-  // requireLogin = (permission, component) => {
-  //   const { auth } = this.props;
-  //   const { permissions } = auth.data;
-  //   if (process.env.NODE_ENV === 'production' && !permissions) {
-  //     // 线上环境判断是否登录
-  //     return <Redirect to={'/login'} />;
-  //   }
-  //   return permission ? this.requireAuth(permission, component) : component;
-  // };
+  requireLogin = (component, permission) => {
+    const { auth } = this.props;
+    if (auth.data === null) {
+      return <Redirect to={'/'} />;
+    }
+    const { permissions } = auth.data;
+    if (process.env.NODE_ENV === 'production' && !permissions) {
+      // 线上环境判断是否登录
+      return <Redirect to={'/login'} />;
+    }
+    return permission ? this.requireAuth(permission, component) : component;
+  };
 
   render() {
     return (
@@ -50,11 +53,12 @@ class Routers extends Component {
                          };
 
                          // 重新包装组件
-                         return (
+                         const wrappedComponent = (
                            <DocumentTitle title={item.title}>
                              <Component {...merge}/>
                            </DocumentTitle>
                          );
+                         return item.login ? wrappedComponent : this.requireLogin(wrappedComponent, item.auth);
                        }}
                 />
               );

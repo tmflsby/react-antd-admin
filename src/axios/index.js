@@ -20,9 +20,7 @@ export const weibo = () =>
 
 export const gitOauthLogin = () =>
   get({
-    url: `${
-      config.GIT_OAUTH
-    }/authorize?client_id=792cdcd244e98dcd2dee&redirect_uri=http://localhost:3000/&scope=user&state=reactAdmin`
+    url: `${config.GIT_OAUTH}/authorize?client_id=792cdcd244e98dcd2dee&redirect_uri=http://localhost:3000/&scope=user&state=reactAdmin`
   });
 
 export const gitOauthToken = code =>
