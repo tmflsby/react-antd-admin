@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { fetchData, receiveData } from "../../store/actions";
+// import { connect } from "react-redux";
+// import { bindActionCreators } from "redux";
+// import { fetchData, receiveData } from "../../store/actions";
+import { connectAlita } from "redux-alita";
 import PwaInstaller from "../widget/PwaInstaller";
 
 class Login extends Component {
@@ -14,7 +15,11 @@ class Login extends Component {
   }
 
   componentDidMount() {
-    this.props.receiveData(null, 'auth');
+    // this.props.receiveData(null, 'auth');
+    this.props.setAlitaState({
+      stateName: 'auth',
+      data: null
+    })
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -30,12 +35,11 @@ class Login extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of Form: ', values);
-        const { fetchData } = this.props;
         if (values.userName === 'admin' && values.password === 'admin') {
-          return fetchData({funcName: 'admin', stateName: 'auth'});
+          return this.props.setAlitaState({funcName: 'admin', stateName: 'auth'});
         }
         if (values.userName === 'guest' && values.password === 'guest') {
-          return fetchData({funcName: 'guest', stateName: 'auth'});
+          return this.props.setAlitaState({funcName: 'guest', stateName: 'auth'});
         }
       }
     });
@@ -116,17 +120,18 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    auth: state.httpDataReducer.auth
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchData: bindActionCreators(fetchData, dispatch),
-    receiveData: bindActionCreators(receiveData, dispatch)
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Form.create()(Login));
+// const mapStateToProps = (state) => {
+//   return {
+//     auth: state.httpDataReducer.auth
+//   };
+// };
+//
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     fetchData: bindActionCreators(fetchData, dispatch),
+//     receiveData: bindActionCreators(receiveData, dispatch)
+//   };
+// };
+//
+// export default connect(mapStateToProps, mapDispatchToProps)(Form.create()(Login));
+export default connectAlita(['auth'])(Form.create()(Login));

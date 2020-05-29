@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'default-passive-events';
-import { Provider } from 'react-redux';
+// import { Provider } from 'react-redux';
+import { AlitaProvider } from "redux-alita";
 import Views from "./views";
 import * as serviceWorker from './serviceWorker';
 import store from "./store";
@@ -11,9 +12,9 @@ import '../src/style/index.less';
 import '../src/style/antd/index.less'
 
 ReactDOM.render(
-  <Provider store={store}>
+  <AlitaProvider store={store}>
     <Views store={store}/>
-  </Provider>,
+  </AlitaProvider>,
   document.getElementById('root')
 );
 

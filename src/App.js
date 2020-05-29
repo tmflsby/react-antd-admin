@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Layout, notification, Icon } from "antd";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import { receiveData } from "./store/actions";
+// import { bindActionCreators } from "redux";
+// import { connect } from "react-redux";
+// import { receiveData } from "./store/actions";
+import { connectAlita } from "redux-alita";
 import Router from "./router";
 import DocumentTitle from "react-document-title";
 import SiderCustom from "./components/SiderCustom";
@@ -20,7 +21,12 @@ class App extends Component {
 
   componentDidMount() {
     const user = JSON.parse(localStorage.getItem('user'));
-    user && this.props.receiveData(user, 'auth');
+
+    // user && this.props.receiveData(user, 'auth');
+    user && this.props.setAlitaState({
+      stateName: 'auth',
+      data: user
+    });
 
     this.getClientWidth();
     window.onresize = () => {
@@ -49,9 +55,16 @@ class App extends Component {
 
   getClientWidth = () => { // 获取当前浏览器宽度并设置responsive管理响应式
     const clientWidth = window.innerWidth;
-    this.props.receiveData({
-      isMobile: clientWidth <= 992,
-    }, 'responsive')
+
+    // this.props.receiveData({
+    //   isMobile: clientWidth <= 992,
+    // }, 'responsive')
+    this.props.setAlitaState({
+      stateName: 'responsive',
+      data: {
+        isMobile: clientWidth <= 992
+      }
+    })
   };
 
   toggle = () => {
@@ -66,17 +79,18 @@ class App extends Component {
   };
 
   render() {
+    const { auth = { data: {} }, responsive = { data: {} } } = this.props;
     return (
       <DocumentTitle title={this.state.title}>
         <Layout>
-          {!this.props.responsive.data.isMobile && <SiderCustom collapsed={this.state.collapsed}/>}
+          {!responsive.data.isMobile && <SiderCustom collapsed={this.state.collapsed}/>}
           <ThemePicker/>
           <Layout style={{ flexDirection: 'column' }}>
-            <HeaderCustom toggle={this.toggle} user={this.props.auth.data || {}}
+            <HeaderCustom toggle={this.toggle} user={auth.data || {}}
                           collapsed={this.state.collapsed}
             />
             <Layout.Content style={{ margin: '0 16px', overflow: 'initial', flex: '1 1 0' }}>
-              <Router auth={this.props.auth} onRouterChange={this._setTitle}/>
+              <Router auth={auth} onRouterChange={this._setTitle}/>
             </Layout.Content>
             <Layout.Footer style={{ textAlign: 'center' }}>
               React-Admin ©{new Date().getFullYear()} Created by 帅洋
@@ -88,18 +102,19 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  const { auth = {data: {}}, responsive = {data: {}} } = state.httpDataReducer;
-  return {
-    auth,
-    responsive
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    receiveData: bindActionCreators(receiveData, dispatch)
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+// const mapStateToProps = (state) => {
+//   const { auth = {data: {}}, responsive = {data: {}} } = state.httpDataReducer;
+//   return {
+//     auth,
+//     responsive
+//   };
+// };
+//
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     receiveData: bindActionCreators(receiveData, dispatch)
+//   };
+// };
+//
+// export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connectAlita(['auth', 'responsive'])(App);

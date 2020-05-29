@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Menu, Icon, Layout, Badge, Popover } from "antd";
 import screenfull from "screenfull";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
+import { connectAlita } from "redux-alita";
 import { withRouter } from "react-router-dom";
 import { gitOauthInfo, gitOauthToken } from "../axios";
 import { queryString } from "../utils";
@@ -67,11 +68,12 @@ class HeaderCustom extends Component {
   };
 
   render() {
+    const { responsive = { data: {} }, path } = this.props;
     return (
       <Layout.Header className="custom-theme header">
         {
-          this.props.responsive.data.isMobile ? (
-            <Popover content={<SiderCustom path={this.props.path} popoverHide={this.popoverHide}/>}
+          responsive.data.isMobile ? (
+            <Popover content={<SiderCustom path={path} popoverHide={this.popoverHide}/>}
                      trigger='click' placement='bottomLeft' visible={this.state.visible}
                      onVisibleChange={this.handleVisibleChange}
             >
@@ -121,11 +123,12 @@ class HeaderCustom extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  const { responsive = {data: {}} } = state.httpDataReducer;
-  return {
-    responsive
-  };
-};
-
-export default withRouter(connect(mapStateToProps)(HeaderCustom));
+// const mapStateToProps = (state) => {
+//   const { responsive = {data: {}} } = state.httpDataReducer;
+//   return {
+//     responsive
+//   };
+// };
+//
+// export default withRouter(connect(mapStateToProps)(HeaderCustom));
+export default withRouter(connectAlita(['responsive'])(HeaderCustom));
