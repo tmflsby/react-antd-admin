@@ -105,6 +105,12 @@ export default {
           title: '问号形式参数',
           component: 'QueryParams',
           query: '?param1=1&param2=2'
+        },
+        {
+          key: '/app/extension/visitor',
+          title: '访客模式',
+          component: 'Visitor',
+          login: true,
         }
       ]
     },

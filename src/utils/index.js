@@ -15,3 +15,11 @@ export const queryString = () => {
   });
   return _queryString;
 };
+
+/**
+ * 检验是否登录
+ * @param permissions
+ */
+export const checkLogin = (permissions) => {
+  return (process.env.NODE_ENV === 'production' && !!permissions) || process.env.NODE_ENV === 'development';
+};

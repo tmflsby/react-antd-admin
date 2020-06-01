@@ -9,6 +9,7 @@ import DocumentTitle from "react-document-title";
 import SiderCustom from "./components/SiderCustom";
 import HeaderCustom from "./components/HeaderCustom";
 import ThemePicker from "./components/widget/ThemePicker";
+import { checkLogin } from "./utils";
 
 class App extends Component {
   constructor(props) {
@@ -78,7 +79,9 @@ class App extends Component {
     return (
       <DocumentTitle title={this.state.title}>
         <Layout>
-          {!responsive.data.isMobile && <SiderCustom collapsed={this.state.collapsed}/>}
+          {!responsive.data.isMobile && checkLogin(auth.data.permission) && (
+            <SiderCustom collapsed={this.state.collapsed}/>
+          )}
           <ThemePicker/>
           <Layout style={{ flexDirection: 'column' }}>
             <HeaderCustom toggle={this.toggle} user={auth.data || {}}

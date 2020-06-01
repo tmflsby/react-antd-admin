@@ -23,6 +23,7 @@ import CssModule from "../components/cssModule";
 import Map from "../components/ui/map/Map";
 import Loading from "../components/widget/Loading";
 import QueryParams from "../components/extension/QueryParams";
+import Visitor from "./extension/Visitor";
 
 // 按需加载富文本配置
 const Wysiwyg = Loadable({
@@ -34,5 +35,5 @@ export default {
   Buttons, Icons, Spins, BasicTables, AdvancedTables, AsynchronousTable, BasicForm,
   Echarts, Recharts, Dashboard, Modals, Notifications, TabsCustom, Banners, Drags,
   Gallery, BasicAnimations, ExampleAnimations, BasicAuth, RouterEnter, CssModule,
-  Map, QueryParams, Wysiwyg
+  Map, QueryParams, Wysiwyg, Visitor
 };
