@@ -38,7 +38,7 @@ class Routers extends Component {
         {Object.keys(routerConfig).map(key =>
           routerConfig[key].map(item => {
             const route = item => {
-              const Component = AllComponents[item.component];
+              const Component = item.component && AllComponents[item.component];
               return (
                 <Route exact key={item.key} path={item.key}
                        render={props => {
@@ -67,7 +67,12 @@ class Routers extends Component {
                 />
               );
             };
-            return item.component ? route(item) : item.subs.map(i => route(i));
+
+            const subRoute = (r) => {
+              return r.subs && r.subs.map(subR => (subR.subs ? subRoute(subR) : route(subR)));
+            };
+
+            return item.component ? route(item) : subRoute(item);
           })
         )}
 

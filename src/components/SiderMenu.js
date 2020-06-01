@@ -3,31 +3,30 @@ import { Menu, Icon } from "antd";
 import { NavLink } from "react-router-dom";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
-const renderMenuItem = (item) => {
-  return (
-    <Menu.Item key={ item.key }>
-      <NavLink to={ item.key + (item.query || '')} replace>
-        { item.icon && <Icon type={ item.icon }/> }
-        <span className="nav-text">{ item.title }</span>
-      </NavLink>
-    </Menu.Item>
-  );
-};
+const renderMenuItem = (item) =>
+  <Menu.Item key={ item.key }>
+    <NavLink to={ item.key + (item.query || '')} replace>
+      { item.icon && <Icon type={ item.icon }/> }
+      <span className="nav-text">{ item.title }</span>
+    </NavLink>
+  </Menu.Item>;
 
-const renderSubMenu = (item) => {
-  return (
-    <Menu.SubMenu key={ item.key }
-                  title={
-                    <span>
-                          { item.icon && <Icon type={ item.icon }/> }
-                      <span className="nav-text">{ item.title }</span>
-                        </span>
-                  }
-    >
-      { item.subs && item.subs.map(item => renderMenuItem(item)) }
-    </Menu.SubMenu>
-  );
-};
+
+const renderSubMenu = (item) =>
+  <Menu.SubMenu key={ item.key }
+                title={
+                  <span>
+                    { item.icon && <Icon type={ item.icon }/> }
+                    <span className="nav-text">{ item.title }</span>
+                  </span>
+                }
+  >
+    {
+      item.subs && item.subs.map(subs => (
+        subs.subs ? renderSubMenu(subs) : renderMenuItem(subs)
+      ))
+    }
+  </Menu.SubMenu>;
 
 const SiderMenu = ({ menus, ...props }) => {
   const [dragItems, setDragItems] = useState(menus);

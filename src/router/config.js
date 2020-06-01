@@ -111,7 +111,24 @@ export default {
           title: '访客模式',
           component: 'Visitor',
           login: true,
-        }
+        },
+        {
+          key: '/app/extension/multiple',
+          title: '多级菜单',
+          subs: [
+            {
+              key: '/app/extension/multiple/child',
+              title: '多级菜单子菜单',
+              subs: [
+                {
+                  key: '/app/extension/multiple/child/child',
+                  title: '多级菜单子子菜单',
+                  component: 'MultipleMenu'
+                },
+              ],
+            }
+          ],
+        },
       ]
     },
   ],
