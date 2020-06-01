@@ -73,11 +73,6 @@ class App extends Component {
     });
   };
 
-  _setTitle = (title) => {
-    if (this.state.title === title) return;
-    this.setState({ title })
-  };
-
   render() {
     const { auth = { data: {} }, responsive = { data: {} } } = this.props;
     return (
@@ -90,7 +85,7 @@ class App extends Component {
                           collapsed={this.state.collapsed}
             />
             <Layout.Content style={{ margin: '0 16px', overflow: 'initial', flex: '1 1 0' }}>
-              <Router auth={auth} onRouterChange={this._setTitle}/>
+              <Router auth={auth}/>
             </Layout.Content>
             <Layout.Footer style={{ textAlign: 'center' }}>
               React-Admin ©{new Date().getFullYear()} Created by 帅洋
