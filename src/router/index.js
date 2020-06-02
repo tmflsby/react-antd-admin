@@ -9,10 +9,9 @@ import { checkLogin } from "../utils";
 class Routers extends Component {
   getPermissions = () => {
     const { auth } = this.props;
-    if (auth.data === null) {
-      return <Redirect to={'/'} />;
-    }
-    return auth ? auth.data.permission : null
+    // console.log('auth', auth);
+    return auth ? auth.data && auth.data.permission : null
+
   };
 
   requireAuth = (permission, component) => {
@@ -25,6 +24,7 @@ class Routers extends Component {
 
   requireLogin = (component, permission) => {
     const permissions = this.getPermissions();
+    // console.log('permissions', permissions);
     if (!checkLogin(permissions)) {
       // 线上环境判断是否登录
       return <Redirect to={'/login'} />;
