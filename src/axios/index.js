@@ -36,20 +36,14 @@ export const gitOauthToken = code =>
   });
 
 // {headers: {Accept: 'application/json'}}
-export const gitOauthInfo = access_token =>
-  get({
-    url: `${config.GIT_USER}access_token=${access_token}`
-  });
+export const gitOauthInfo = access_token => get({url: `${config.GIT_USER}access_token=${access_token}`});
 
 // easy-mock数据交互
 // 管理员权限获取
-export const admin = () =>
-  get({
-    url: config.MOCK_AUTH_ADMIN
-  });
+export const admin = () => get({url: config.MOCK_AUTH_ADMIN});
 
 // 访问权限获取
-export const guest = () =>
-  get({
-    url: config.MOCK_AUTH_VISITOR
-  });
+export const guest = () => get({url: config.MOCK_AUTH_VISITOR});
+
+/** 获取服务端菜单 */
+export const fetchMenu = () => get({ url: config.MOCK_MENU });

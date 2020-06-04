@@ -3,6 +3,7 @@ import { Layout } from "antd";
 import { withRouter } from "react-router-dom";
 import routerConfig from "../router/config";
 import SiderMenu from "./SiderMenu";
+import { fetchMenu } from "../axios";
 
 class SiderCustom extends Component {
   constructor(props) {
@@ -12,13 +13,19 @@ class SiderCustom extends Component {
       mode: 'inline',
       openKeys: [],
       selectedKey: '',
-      firstHide: true    // 点击收缩菜单，第一次隐藏展开子菜单，openMenu时恢复
+      firstHide: true,    // 点击收缩菜单，第一次隐藏展开子菜单，openMenu时恢复
+      smenus: []
     };
   }
 
+
   componentDidMount() {
     const state = SiderCustom.setMenuOpen(this.props);
-    this.setState({state})
+    this.setState({state});
+
+    fetchMenu()
+      .then(smenus => this.setState({ smenus }))
+      .catch(error => console.log(error));
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -89,7 +96,7 @@ class SiderCustom extends Component {
                     trigger={null}
       >
         <div className="logo"/>
-        <SiderMenu menus={routerConfig.menus}
+        <SiderMenu menus={[...routerConfig.menus, ...this.state.smenus]}
                    mode='inline' onClick={this.menuClick}
                    openKeys={this.state.firstHide ? [] : this.state.openKeys}
                    selectedKeys={[this.state.selectedKey]}

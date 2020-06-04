@@ -25,6 +25,8 @@ import Loading from "../components/widget/Loading";
 import QueryParams from "../components/extension/QueryParams";
 import Visitor from "./extension/Visitor";
 import MultipleMenu from "./extension/MultipleMenu";
+import SmenuSub1 from "./smenu/SmenuSub1";
+import SmenuSub2 from "./smenu/SmenuSub2";
 
 // 按需加载富文本配置
 const Wysiwyg = Loadable({
@@ -36,5 +38,5 @@ export default {
   Buttons, Icons, Spins, BasicTables, AdvancedTables, AsynchronousTable, BasicForm,
   Echarts, Recharts, Dashboard, Modals, Notifications, TabsCustom, Banners, Drags,
   Gallery, BasicAnimations, ExampleAnimations, BasicAuth, RouterEnter, CssModule,
-  Map, QueryParams, Wysiwyg, Visitor, MultipleMenu
+  Map, QueryParams, Wysiwyg, Visitor, MultipleMenu, SmenuSub1, SmenuSub2
 };

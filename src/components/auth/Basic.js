@@ -10,6 +10,7 @@ class Basic extends Component {
       <div>
         <BreadcrumbCustom first='权限管理' second='基础演示' />
         <AuthWidget children={auth => {
+          console.log(auth)
           return (
             <Row>
               <Col md={24}>
