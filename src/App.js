@@ -91,7 +91,7 @@ class App extends Component {
               <Router auth={auth}/>
             </Layout.Content>
             <Layout.Footer style={{ textAlign: 'center' }}>
-              React-Admin ©{new Date().getFullYear()} Created by 帅洋
+              React-AntD-Admin ©{new Date().getFullYear()} Created by 帅洋
             </Layout.Footer>
           </Layout>
         </Layout>

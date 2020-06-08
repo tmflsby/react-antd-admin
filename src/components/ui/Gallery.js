@@ -65,10 +65,10 @@ class Gallery extends Component {
                   />
                 </div>
                 <div className="pa-m">
-                  <h3>React Admin</h3>
+                  <h3>React AntD Admin</h3>
                   <small>
-                    <a href="https://github.com/tmflsby/react-admin" target="_blank"  rel="noopener noreferrer" >
-                      https://github.com/tmflsby/react-admin
+                    <a href="https://github.com/tmflsby/react-antd-admin" target="_blank"  rel="noopener noreferrer" >
+                      https://github.com/tmflsby/react-antd-admin
                     </a>
                   </small>
                 </div>
