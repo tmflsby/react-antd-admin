@@ -10,16 +10,14 @@ import { message } from "antd";
  * @param msg       接口异常提示
  * @param headers   接口所需header配置
  */
-export const get = ({url, msg = '接口异常', config, callback = res => res.data}) => {
-  return (
-    axios.get(url, config)
-      .then(callback)
-      .catch(err => {
-        console.log(err);
-        message.warn(msg);
-      })
-  )
-};
+export const get = ({url, msg = '接口异常', config, callback = res => res.data}) => (
+  axios.get(url, config)
+    .then(callback)
+    .catch(err => {
+      console.log(err);
+      message.warn(msg);
+    })
+);
 
 /**
  * 公用post请求
@@ -28,13 +26,11 @@ export const get = ({url, msg = '接口异常', config, callback = res => res.da
  * @param msg       接口异常提示
  * @param headers   接口所需header配置
  */
-export const post = ({url, data, msg = '接口异常', config, callback = res => res.data}) => {
-  return (
-    axios.post(url, data, config)
-      .then(callback)
-      .catch(err => {
-        console.log(err);
-        message.warn(msg);
-      })
-  )
-};
+export const post = ({url, data, msg = '接口异常', config, callback = res => res.data}) => (
+  axios.post(url, data, config)
+    .then(callback)
+    .catch(err => {
+      console.log(err);
+      message.warn(msg);
+    })
+);

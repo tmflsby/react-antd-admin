@@ -2,28 +2,35 @@ import axios from "axios";
 import { get, post } from "./tools";
 import * as config from "./config";
 
-export const getBBCNews = () => get({url: config.NEWS_BBC});
+export const getBBCNews = () => (
+  get({
+    url: config.NEWS_BBC
+  })
+);
 
-export const npmDependencies = () =>
+export const npmDependencies = () => (
   axios.get('./json/npm.json')
     .then(res => res.data)
     .catch(err => {
       console.log(err);
-    });
+    })
+);
 
-export const weibo = () =>
+export const weibo = () => (
   axios.get('./json/weibo.json')
     .then(res => res.data)
     .catch(err => {
-    console.log(err);
-  });
+      console.log(err);
+    })
+);
 
-export const gitOauthLogin = () =>
+export const gitOauthLogin = () => (
   get({
     url: `${config.GIT_OAUTH}/authorize?client_id=792cdcd244e98dcd2dee&redirect_uri=http://localhost:3000/&scope=user&state=reactAdmin`
-  });
+  })
+);
 
-export const gitOauthToken = code =>
+export const gitOauthToken = code => (
   post({
     url: `https://cors-anywhere.herokuapp.com/${config.GIT_OAUTH}/access_token`,
     data: {
@@ -33,17 +40,34 @@ export const gitOauthToken = code =>
       state: 'reactAdmin',
       code
     }
-  });
+  })
+);
 
 // {headers: {Accept: 'application/json'}}
-export const gitOauthInfo = access_token => get({url: `${config.GIT_USER}access_token=${access_token}`});
+export const gitOauthInfo = access_token => (
+  get({
+    url: `${config.GIT_USER}access_token=${access_token}`
+  })
+);
 
 // easy-mock数据交互
-// 管理员权限获取
-export const admin = () => get({url: config.MOCK_AUTH_ADMIN});
+/** 管理员权限获取 */
+export const admin = () => (
+  get({
+    url: config.MOCK_AUTH_ADMIN
+  })
+);
 
-// 访问权限获取
-export const guest = () => get({url: config.MOCK_AUTH_VISITOR});
+/** 访问权限获取 */
+export const guest = () => (
+  get({
+    url: config.MOCK_AUTH_VISITOR
+  })
+);
 
 /** 获取服务端菜单 */
-export const fetchMenu = () => get({ url: config.MOCK_MENU });
+export const fetchMenu = () => (
+  get({
+    url: config.MOCK_MENU
+  })
+);

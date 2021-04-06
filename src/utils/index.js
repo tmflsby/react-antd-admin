@@ -1,4 +1,6 @@
-/* 获取URL的参数 */
+/**
+ * 获取URL的参数
+ * */
 export const queryString = () => {
   let _queryString = {};
   const _query = window.location.search.substr();
@@ -19,7 +21,31 @@ export const queryString = () => {
 /**
  * 检验是否登录
  * @param permissions
- */
-export const checkLogin = (permissions) => {
-  return (process.env.NODE_ENV === 'production' && !!permissions) || process.env.NODE_ENV === 'development';
-};
+ * */
+export const checkLogin = (permissions) => (
+  (process.env.NODE_ENV === "production" && !!permissions) || process.env.NODE_ENV === "development"
+);
+
+/**
+ * 存 localStorage
+ * @param key
+ * @param value
+ * */
+export const setLocalStorage = (key, value) => window.localStorage.setItem(key, JSON.stringify(value));
+
+/**
+ * 取 localStorage
+ * @param key
+ * */
+export const getLocalStorage = (key) => JSON.parse(window.localStorage.getItem(key));
+
+/**
+ * 删 localStorage
+ * @param key
+ * */
+export const removeLocalStorage = (key) => window.localStorage.removeItem(key);
+
+/**
+ * 清除所有的 localStorage
+ * */
+export const clearAllLocalStorage = () => window.localStorage.clear();

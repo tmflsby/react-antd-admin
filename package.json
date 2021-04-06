@@ -25,7 +25,6 @@
     "case-sensitive-paths-webpack-plugin": "2.3.0",
     "classnames": "^2.2.6",
     "css-loader": "3.4.2",
-    "default-passive-events": "^1.0.10",
     "dotenv": "8.2.0",
     "dotenv-expand": "5.1.0",
     "draft-js": "^0.11.4",
@@ -174,5 +173,8 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "prop-types": "^15.7.2"
   }
 }

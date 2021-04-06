@@ -1,19 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'default-passive-events';
 // import { Provider } from 'react-redux';
 import { AlitaProvider } from "redux-alita";
-import Views from "./views";
+import Router from "./router";
 import * as serviceWorker from './serviceWorker';
 import store from "./store";
 import 'animate.css';
 import './index.css';
 import '../src/style/index.less';
-import '../src/style/antd/index.less'
 
 ReactDOM.render(
   <AlitaProvider store={store}>
-    <Views store={store}/>
+    <Router store={store}/>
   </AlitaProvider>,
   document.getElementById('root')
 );
