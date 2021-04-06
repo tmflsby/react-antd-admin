@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import { Provider } from 'react-redux';
-import { AlitaProvider } from "redux-alita";
+import { Provider } from 'react-redux';
 import Router from "./router";
 import * as serviceWorker from './serviceWorker';
 import store from "./store";
@@ -10,9 +9,9 @@ import './index.css';
 import '../src/style/index.less';
 
 ReactDOM.render(
-  <AlitaProvider store={store}>
+  <Provider store={store}>
     <Router store={store}/>
-  </AlitaProvider>,
+  </Provider>,
   document.getElementById('root')
 );
 

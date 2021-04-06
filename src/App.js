@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { Layout, notification, Icon } from "antd";
 import DocumentTitle from "react-document-title";
-// import { bindActionCreators } from "redux";
-// import { connect } from "react-redux";
-// import { receiveData } from "./store/actions";
-import { connectAlita } from "redux-alita";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { receiveData } from "./store/actions";
 import CRouter from "./router/CRouter";
 import SiderCustom from "./layout/SiderCustom";
 import HeaderCustom from "./layout/HeaderCustom";
@@ -23,11 +22,7 @@ class App extends Component {
   componentDidMount() {
     const user = getLocalStorage('user');
 
-    // user && this.props.receiveData(user, 'auth');
-    user && this.props.setAlitaState({
-      stateName: 'auth',
-      data: user
-    });
+    user && this.props.receiveData(user, 'auth');
 
     this.getClientWidth();
     window.onresize = () => {
@@ -67,15 +62,9 @@ class App extends Component {
 
     const clientWidth = window.innerWidth;
 
-    // this.props.receiveData({
-    //   isMobile: clientWidth <= 992,
-    // }, 'responsive')
-    this.props.setAlitaState({
-      stateName: 'responsive',
-      data: {
-        isMobile: clientWidth <= 992
-      }
-    })
+    this.props.receiveData({
+      isMobile: clientWidth <= 992,
+    }, 'responsive')
   };
 
   toggle = () => {
@@ -115,19 +104,18 @@ class App extends Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   const { auth = {data: {}}, responsive = {data: {}} } = state.httpDataReducer;
-//   return {
-//     auth,
-//     responsive
-//   };
-// };
-//
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     receiveData: bindActionCreators(receiveData, dispatch)
-//   };
-// };
-//
-// export default connect(mapStateToProps, mapDispatchToProps)(App);
-export default connectAlita(['auth', 'responsive'])(App);
+const mapStateToProps = (state) => {
+  const { auth = {data: {}}, responsive = {data: {}} } = state.httpDataReducer;
+  return {
+    auth,
+    responsive
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    receiveData: bindActionCreators(receiveData, dispatch)
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

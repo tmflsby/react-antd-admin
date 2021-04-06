@@ -1,17 +1,12 @@
-// import { createStore, compose, applyMiddleware } from 'redux';
-// import thunk from 'redux-thunk';
-// import reducer from './reducer';
-//
-// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-//
-// const store = createStore(reducer, composeEnhancers(
-//   applyMiddleware(thunk)
-// ));
+import { createStore, compose, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import reducer from './reducer';
 
-import * as Api from "../axios";
-import { setConfig } from "redux-alita";
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = setConfig(Api);
+const store = createStore(reducer, composeEnhancers(
+  applyMiddleware(thunk)
+));
 
 export default store;
 
