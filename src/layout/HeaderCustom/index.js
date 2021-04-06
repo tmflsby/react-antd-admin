@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Menu, Icon, Layout, Badge, Popover } from "antd";
 import screenfull from "screenfull";
-// import { connect } from "react-redux";
 import { connectAlita } from "redux-alita";
 import { withRouter } from "react-router-dom";
 import SiderCustom from "../SiderCustom";
@@ -168,12 +167,4 @@ class HeaderCustom extends Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   const { responsive = {data: {}} } = state.httpDataReducer;
-//   return {
-//     responsive
-//   };
-// };
-//
-// export default withRouter(connect(mapStateToProps)(Index));
 export default withRouter(connectAlita(['responsive'])(HeaderCustom));

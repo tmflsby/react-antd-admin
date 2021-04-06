@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import { Provider } from 'react-redux';
 import { AlitaProvider } from "redux-alita";
 import Router from "./router";
 import * as serviceWorker from './serviceWorker';
